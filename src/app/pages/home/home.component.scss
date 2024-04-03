@@ -1,0 +1,72 @@
+.btn-group button {
+    margin-right: 10px; 
+  }
+  .btn-success-button {
+    background-color: #fbce07;
+    border-color: black;
+    color: black;
+    padding: 10px 20px;
+    font-size: 15px;
+    border-radius: 15px;
+    margin: 0 auto; 
+    display: block; 
+    font-weight: bold;
+    margin-bottom:80px;
+    margin-top: 150px;
+    margin-left:40px;
+  
+  }
+  .btn-success-button:hover {
+    background-color: white;
+    border: 3px solid red;
+    color: black;
+  }
+.container {
+max-width: 430px;
+margin: auto;
+text-align: center;
+background-image: url("/assets/Banner.jpeg"); 
+background-size: cover; 
+background-position: center; 
+background-repeat: no-repeat; 
+margin-top: 150px;
+padding-top: 1em;
+height: 350px;
+}
+.btn-group button {
+  margin-right: 10px; 
+}
+.btn-Warning-button {
+  background-color:  #fbce07;
+  border-color: black;
+  color: black;
+  padding: 10px 20px;
+  font-size: 15px;
+  border-radius: 15px;
+  margin: 0 auto; 
+  display: block; 
+  font-weight: bold;
+  margin-bottom:-80px;
+  margin-top:-122px;
+  margin-left:190px;
+  margin-right:50px;
+}
+
+
+.btn-Warning-button:hover {
+  background-color: white;
+  border: 3px solid red;
+  color: black;
+}
+.container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+margin-left:50px;
+}
+
+.registration-container {
+  width: 400px;
+  height: 400px;
+
+}

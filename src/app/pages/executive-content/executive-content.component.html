@@ -1,0 +1,19 @@
+
+    
+      
+<div class="retailer-box mat-elevation-z2" *ngFor="let retailor of retailorlist">
+    <button (click)="onInfoButtonClick(retailor)" [routerLink]="'/RetailorDetails'" class="display">
+    <div class="retailer-details">
+      <div class="account-circle-container">
+        <mat-icon class="account-circle">account_circle</mat-icon>
+        <div class="retailer-label retailer-name">{{ retailor.retailor }}</div>
+      </div>
+      <div class="retailer-address">
+        <span class="retailer-label">Address: {{ retailor.address ? retailor.address : 'Null' }}</span>
+        <span class="retailer-label">TotalAmount: {{ retailor.totalAmount ? retailor.totalAmount : '0' }}</span>
+        <span class="retailer-label">CreatedDate: {{ retailor.createdDate ? (retailor.createdDate | date: 'dd-MM-yyyy') : '0' }}</span>
+      </div>     
+    </div>
+</button>
+</div>
+

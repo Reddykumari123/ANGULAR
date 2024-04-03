@@ -1,0 +1,51 @@
+
+<div  appResponsive>
+<mat-sidenav-container class="sidenav-container">
+  <mat-sidenav #sidenav mode="side" opened="false"class="sidebar">
+    <mat-nav-list>
+      <app-profile ></app-profile>
+      <mat-divider></mat-divider>
+
+      <a mat-list-item routerLink="/Menu">
+        <mat-icon class="custom-icon">trending_up</mat-icon> 
+        <span class="dsr">DSR</span>
+      </a>
+      <mat-divider></mat-divider>
+      <a mat-list-item routerLink="/Content">
+        <mat-icon class="custom-icon">addchart</mat-icon> 
+        <span class="reports">Reports</span>
+      </a>
+      <mat-divider></mat-divider>
+      <a mat-list-item routerLink="/notifications">
+     <mat-icon class="custom-icon">notifications</mat-icon> 
+     <span class="reports">Notifications</span>
+      </a>
+      <mat-divider></mat-divider>
+      <a mat-list-item routerLink="/products">
+        <mat-icon class="custom-icon">add_shopping_cart</mat-icon> 
+        <span class="reports">Products</span>
+      </a>  
+    </mat-nav-list> 
+  </mat-sidenav>
+
+  <mat-sidenav-content class="cardcolor">
+    <mat-toolbar class="toolbarheader custom-border">
+      <button mat-icon-button class="menu-button" (click)="sidenav.toggle()">
+        <mat-icon>menu</mat-icon>
+      </button>
+      
+      <span class="personName">Hello {{userName}}!</span>
+
+      <button class="logout-button" (click)="logout()">
+        <span class="material-icons">logout</span>
+      </button>
+
+      
+      
+    </mat-toolbar>
+
+    <router-outlet></router-outlet>
+
+  </mat-sidenav-content>
+</mat-sidenav-container>
+</div>

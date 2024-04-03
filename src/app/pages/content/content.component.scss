@@ -1,0 +1,110 @@
+
+.example-full-width {
+  margin-top:50px; 
+  margin-left:60px;
+  margin-right: 50px;
+}
+  .primary-button {
+    margin-left:100px;
+    margin-right:50px;
+    margin-top:-10px;
+    width:200px;
+    height:40px;
+    border: 2px solid black;
+    padding: 0 50px;
+    border-radius: 40px;
+    font-size: large;
+    font-family:"Capriola";
+    font-weight: bold;
+    background-color: #fbce07 !important;
+  }
+
+  
+  .retailer-details {
+    display: flex;
+    align-items: center;
+    margin-top: 15px;
+    margin-left: 20px;
+  }
+  
+  .account-circle-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+  }
+  
+  .retailer-name {
+    margin-top: 5px; 
+    font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    font-weight: bolder;
+
+  }
+  
+  .retailer-address {
+    margin-left: 20px; 
+    margin-top:1px;
+  font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+  }
+  
+  .retailer-label {
+    display: block;
+    margin-bottom: 5px;
+  }
+  
+  .center-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 50vh; 
+  }
+  
+  .container {
+    display: flex;
+    align-items: center;
+  }
+
+.retailer-box {
+  position: relative;
+  width:350px;
+  height:120px;
+  margin-top: 20px;
+  margin-left:15px;
+  font-weight: bold;
+  border: 1px solid #fbce07;
+}
+
+.searchfilter{
+  width:100%;
+  transform: scale(0.85);
+margin-top:-20px;
+}
+.Datepicker{
+  width:100%;
+  transform: scale(0.85);
+}
+.no-data-found {
+  color: red; 
+  font-size:25px; 
+  margin-top:60px;
+  margin-left:120px;
+}
+.count {
+  color: black;
+  font-weight: bold;
+  margin-top: 10px;
+  margin-left:10px;
+  font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+}
+
+.red-text {
+  color: red;
+  font-weight: bold;
+  font-size: larger;
+}
+.display{
+  background-color:transparent;
+  border: none; 
+  outline: none;
+}
+

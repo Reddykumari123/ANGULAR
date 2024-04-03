@@ -1,0 +1,123 @@
+.example-full-width {
+  width: 70%;
+  margin: auto;
+  text-align: center;
+  font-weight: bold;
+}
+  .registration-container {
+    max-width: 400px;
+    margin: auto;
+    text-align: center;
+    background-image:url("/assets/Banner.jpeg"); 
+    background-size: cover; 
+    background-position: center; 
+    background-repeat: no-repeat; 
+    margin-top: 150px;
+  }
+.custom-primary-button {
+  display: block;
+  margin: 0 auto;
+  text-decoration: none;
+  padding: 15px 30px;
+  border-radius: 150px;
+  width: 30%;
+  background-color:#fbce07;
+  color: black;
+  border: 2px solid black;
+  font-size: 15px;
+  font-weight: bold;
+} 
+.custom-primary-button:hover {
+  background-color:white;
+  border: 3px solid blue($color: #000000);
+  color: black;
+}
+.mat-card-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.registration-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height:50vh; 
+  font-weight: bold;
+}
+.center-text {
+  text-align: center;
+  font-size: 30px;
+}
+
+.bold-icon {
+  font-weight: bold;
+  color: #000000;
+  margin-right:20px; 
+  
+}
+.bold-text {
+  font-weight: bold;
+  color: #000000;
+  
+}                                                                                         
+.bold-title {
+  color: black;
+  background-color: #fbce07;
+  margin-bottom: 45px;
+  font-weight: bold;
+  font-size: 18px;
+  border: 2px solid black;
+  padding: 0 50px;   
+  border-radius: 10px;
+  font-family: ui-sans-serif;
+}
+.popup-container {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: white;
+  padding: 10px;
+  font-size: 15px;
+  color: black;
+  font-family: "Capriola"; 
+  border-radius: 3px;
+  width: 280px;
+  height: 150px;
+  display: flex;
+  justify-content: center; 
+  align-items: center; 
+}
+.btn-disabled{
+  cursor: not-allowed;
+  display: block;
+  margin: 0 auto;
+  text-decoration: none;
+  padding: 15px 30px;
+  border-radius: 150px;
+  width: 30%;
+  background-color:#fbce07;
+  color: black;
+  border: 2px solid black;
+  font-size: 15px;
+  font-weight: bold;
+
+}
+.ok-button {
+  padding: 5px 10px; 
+  min-width: 120px; 
+  background-color:#fbce07; 
+  color: black; 
+  border: none; 
+  border-radius: 5px; 
+  cursor: pointer; 
+  font-weight: bold;
+  border: 1px solid black;
+}
+
+
+
+
+
+

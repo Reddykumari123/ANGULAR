@@ -1,0 +1,10 @@
+{
+  "routes": [
+    "/",
+    "/Login",
+    "/Menu",
+    "/Profile",
+    "/RetailorDetails",
+    "/shell"
+  ]
+}

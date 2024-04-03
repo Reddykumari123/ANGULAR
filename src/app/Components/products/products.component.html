@@ -1,0 +1,20 @@
+<mat-form-field class="filter">
+  <mat-label>Filter</mat-label>
+  <input matInput placeholder="Product Name" #input (keyup)="applyFilter(input.value)">
+</mat-form-field>
+<div><button class="login-button" [routerLink]="'Home'">LOGIN</button></div>
+<div class="header-image"></div>
+<div class="products-container">
+  <div *ngFor="let product of filteredList" class="product-card">
+    <img [src]="product.presignedUrl" alt="Product Image" class="product-image">
+    <div class="product-details">
+      <p>{{ product.productName }} ({{ product.weight }}gms)</p>
+      <p class="red">₹{{ product.price }}</p>
+    </div>
+  </div>
+</div>
+
+
+
+  
+ 

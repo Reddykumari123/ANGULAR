@@ -1,0 +1,55 @@
+<mat-icon (click)="toggleInputs()" class="addicon">add</mat-icon>
+
+
+<table class="notification-table">
+  <thead>
+    <tr>
+      <th>Subject</th>
+      <th>Body</th>
+      <th>Edit</th>
+      <th>Delete</th>
+    </tr>
+  </thead>
+  <tbody>
+    <ng-container *ngFor="let notification of notifications">
+      <tr *ngIf="selectedNotification?.id === notification.id; else displayRow" class="edit-row">
+        <td>
+          <input type="text" [(ngModel)]="selectedNotification.subject">
+        </td>
+        <td>
+          <textarea [(ngModel)]="selectedNotification.body"></textarea>
+        </td>
+        <td>
+          <button (click)="saveChanges()" class="save">Save</button>
+          <button (click)="cancelEdit()" class="cancel">Cancel</button>
+        </td>
+      </tr>
+      <ng-template #displayRow>
+        <tr class="notification-row">
+          <td>{{ notification.subject }}</td>
+          <td>{{ notification.body }}</td>
+          <td>
+            <mat-icon class="edit-icon" (click)="editNotification(notification)">edit</mat-icon>
+          </td>
+<td>
+            <mat-icon class="delete-icon" (click)="deleteNotification(notification.id)">delete</mat-icon></td>
+        </tr>
+      </ng-template>
+    </ng-container>
+  </tbody>
+</table>
+
+<div class="input-container" *ngIf="showInputs">
+  <label for="subjectInput">Subject:</label>
+  <input type="text" id="subjectInput" [(ngModel)]="newSubject">
+</div>
+<div class="input-container" *ngIf="showInputs">
+  <label for="bodyInput">Body:</label>
+  <textarea id="bodyInput" [(ngModel)]="newBody"></textarea>
+</div>
+
+<button class="notification-button" (click)="postNotification()">Post Notification</button>
+
+
+
+
