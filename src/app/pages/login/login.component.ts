@@ -26,9 +26,9 @@ export class LoginComponent {
   userDetails: UserDetails;
   name: any;
   public showPassword: boolean = false;
+  isSubmitting: boolean = false; // New variable to track form submission
 
   invalidCredentials: boolean = false;
-  isLoading: boolean = false;
 
   constructor(
     private distributorService: DistributorService,
@@ -41,23 +41,27 @@ export class LoginComponent {
   }
 
   onSubmit(userdetails: NgForm) {
-    this.isLoading = true;
+    this.isSubmitting = true; 
     if (this.name === 'DISTRIBUTOR') {
       this.distributorService.getData(userdetails.value).subscribe({
         next: (userdetails) => {
           this.handleLogin(userdetails, 'DISTRIBUTOR');
+          this.isSubmitting = false; 
         },
         error: (err) => {
           this.handleLoginError();
+          this.isSubmitting = false; 
         }
       });
     } else if (this.name === 'EXECUTIVE') {
       this.executiveService.getData(userdetails.value).subscribe({
         next: (userdetails) => {
           this.handleLogin(userdetails, 'EXECUTIVE');
+          this.isSubmitting = false; 
         },
         error: (err) => {
           this.handleLoginError();
+          this.isSubmitting = false;
         }
       });
     }
@@ -75,7 +79,6 @@ export class LoginComponent {
 
   handleLoginError() {
     this.invalidCredentials = true;
-    this.isLoading = false;
   }
 
   public togglePasswordVisibility(): void {

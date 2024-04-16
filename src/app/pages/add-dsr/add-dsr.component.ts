@@ -30,6 +30,7 @@ export class AddDsrComponent implements OnInit {
   products: any[] = [];
 
   distributorid: any;
+ executiveid: any;
   retailorNames: any;
   retailors = [];
 
@@ -44,6 +45,8 @@ export class AddDsrComponent implements OnInit {
   ) {
     this.activeRoute.paramMap.subscribe((params: ParamMap) => {
       this.distributorid = params.get('id');
+     // this.executiveid = params.get('Id');
+
     });
   }
 
@@ -71,12 +74,16 @@ export class AddDsrComponent implements OnInit {
 
       }
     });
-    this.retailorService.getRetailorNames(this.distributorid).subscribe({
+    this.retailorService.getRetailorNamesbydistributor(this.distributorid).subscribe({
       next: (data) => {
         this.retailorNames = data;
       }
     });
-
+    /* this.retailorService.getRetailorNamesbyexecutive(this.executiveid).subscribe({
+      next: (data) => {
+        this.retailorNames = data;
+      }
+  }); */
   }
 
   calculateSubtotal(product: any, newQuantity: string) {

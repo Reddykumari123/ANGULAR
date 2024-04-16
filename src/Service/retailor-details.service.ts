@@ -10,18 +10,17 @@ import { ProductsByDsrId } from '../app/Models/products-by-dsr-id';
 export class RetailorDetailsService {
   
 
-  //apiUrl = "http://13.201.40.123:9999/api/Dsr/RetailorDetails";
   apiUrl = "https://localhost:44335/api/Dsr/RetailorDetails";
 
-  //productsApiUrl = "http://13.201.40.123:9999/api/Dsrdetail?dsrId=";
   productsApiUrl = "https://localhost:44335/api/Dsrdetail?dsrId=";
 
- // assignedRetailorsUrl = "http://13.201.40.123:9999/api/AssignRetailorToDistributor/Details"
+  assignedRetailorsbydistirbutorUrl ="https://localhost:44335/api/AssignRetailorToDistributor/Details";
 
-  assignedRetailorsUrl ="https://localhost:44335/api/AssignRetailorToDistributor/Details";
+  baseurl = "https://localhost:44335/api/Dsr/RetailorDetailsbyExe";
 
+  //assignedRetailorsbyexecutiveUrl:"https://localhost:44335/api/AssignDistributorToExecutive/Details";
 
-
+  
 
 
   private infoButtonClickSubject = new BehaviorSubject<RetailorDetails>(null);
@@ -31,11 +30,15 @@ export class RetailorDetailsService {
     this.infoButtonClickSubject.next(infoButtonClickSubject);
   }
   
-
   constructor(private httpClient: HttpClient) { }
 
-  getRetailorsListById(id: any): Observable<RetailorDetails> {
+  getRetailorsListByDistributorId(id: any): Observable<RetailorDetails> {
     return this.httpClient.get<RetailorDetails>(`${this.apiUrl}/${id}`);
+  }
+  
+
+  getRetailorsListByExecutiveId(executiveId: any): Observable<RetailorDetails[]> {
+    return this.httpClient.get<RetailorDetails[]>(`${this.baseurl}/${executiveId}`);
   }
 
   getProductsById(id: any): Observable<ProductsByDsrId> {
@@ -46,7 +49,10 @@ export class RetailorDetailsService {
     const url = `${this.apiUrl}/${distributorid}/${date}`;
     return this.httpClient.get<RetailorDetails[]>(url);
   }
-  getRetailorNames(id:any) :Observable<any>{
-    return this.httpClient.get(`${this.assignedRetailorsUrl}/${id}`)
+  getRetailorNamesbydistributor(id:any) :Observable<any>{
+    return this.httpClient.get(`${this. assignedRetailorsbydistirbutorUrl}/${id}`)
   }
+ /*  getRetailorNamesbyexecutive(Id:any) :Observable<any>{
+    return this.httpClient.get(`${this.assignedRetailorsbyexecutiveUrl}/${Id}`)
+  } */
 }
