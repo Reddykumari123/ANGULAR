@@ -25,28 +25,25 @@ export class AddDsrComponent implements OnInit {
   dataSource = new MatTableDataSource<Product>();
 
   selectedDate: Date = new Date();
-  selectedRetailer: string | undefined;
-  retailers: string[] = [];
+  retailers: any[] = [];
   products: any[] = [];
-
+  areas: string[] = [];
   distributorid: any;
- executiveid: any;
+  ExecutiveId: any;
   retailorNames: any;
-  retailors = [];
-
-  subtotal: number;
+  selectedRetailer: any;
+  selectedArea: string | undefined;
 
   constructor(
     private http: HttpClient,
     private productService: ProductService,
     private activeRoute: ActivatedRoute,
     private retailorService: RetailorDetailsService,
-    private location:Location
+    private location: Location
   ) {
     this.activeRoute.paramMap.subscribe((params: ParamMap) => {
       this.distributorid = params.get('id');
-     // this.executiveid = params.get('Id');
-
+      this.ExecutiveId = params.get('Id');
     });
   }
 
@@ -58,11 +55,9 @@ export class AddDsrComponent implements OnInit {
   applyFilter(filterValue: string) {
     this.dataSource.filterPredicate = (data: any, filter: string) => {
       return data.productName.toLowerCase().includes(filter.trim().toLowerCase());
-
     };
     this.dataSource.filter = filterValue.trim().toLowerCase();
   }
-  
 
   getProducts(): void {
     this.productService.getProducts().subscribe({
@@ -71,19 +66,30 @@ export class AddDsrComponent implements OnInit {
           allProducts.forEach(x => x.quantity = '');
           this.dataSource.data = allProducts;
         }
-
       }
     });
+
     this.retailorService.getRetailorNamesbydistributor(this.distributorid).subscribe({
       next: (data) => {
         this.retailorNames = data;
+        this.areas = Array.from(new Set(data.map((retailer: any) => retailer.area)));
       }
     });
-    /* this.retailorService.getRetailorNamesbyexecutive(this.executiveid).subscribe({
-      next: (data) => {
-        this.retailorNames = data;
-      }
-  }); */
+  }
+
+  filterRetailers(): any[] {
+    if (!this.selectedArea || !this.retailorNames) {
+      return this.retailorNames;
+    } else {
+      return this.retailorNames.filter(retailer => retailer.area === this.selectedArea);
+    }
+  }
+
+  onAreaChange(selectedArea: string): void {
+    this.selectedArea = selectedArea;
+    if (!selectedArea) {
+      this.selectedRetailer = undefined; 
+    }
   }
 
   calculateSubtotal(product: any, newQuantity: string) {
@@ -112,6 +118,7 @@ export class AddDsrComponent implements OnInit {
       this.handleHardwareBackButton();
     });
   }
+
   handleHardwareBackButton(): void {
     this.location.back();
   }

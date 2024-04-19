@@ -18,12 +18,14 @@ export const routes: Routes =
     { path: 'Login', component: LoginComponent },
     { path: 'Profile', component: ProfileComponent },
     {
-        path: 'Menu', component: MenuComponent, children: 
-        [
-            { path: '', component: ContentComponent },
-            { path: 'CreateDSR/:id', component: AddDsrComponent },
+        path: 'Menu',
+        component: MenuComponent,
+        children: [
+          { path: '', component: ContentComponent },
+          { path: 'CreateDSR/:id', component: AddDsrComponent }, 
         ]
-    },
+      },
+      
     { path: 'RetailorDetails', component: RetailorDetailsComponent },
     { path: 'products', component: ProductsComponent },
     { path: 'products/Home', component: HomeComponent },
