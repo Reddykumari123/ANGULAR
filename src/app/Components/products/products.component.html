@@ -2,6 +2,10 @@
   <mat-label>Filter</mat-label>
   <input matInput placeholder="Product Name" #input (keyup)="applyFilter(input.value)">
 </mat-form-field>
+<div *ngIf="loading" class="spinner-overlay">
+  <div class="spinner"></div>
+</div>
+
 <div><button class="login-button" [routerLink]="'Home'">LOGIN</button></div>
 <div class="header-image"></div>
 <div class="products-container">

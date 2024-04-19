@@ -21,6 +21,11 @@
           {{showPassword ? 'visibility_On' : 'visibility_off'}}
         </mat-icon>
       </mat-form-field>
+      
+      <div *ngIf="isSubmitting" class="spinner-overlay">
+          <div class="spinner"></div>
+        </div>
+
 
       <button [ngClass]="{'custom-primary-button large-button': Userdetails.value.username && Userdetails.value.password , 'btn-disabled': !Userdetails.value.username || !Userdetails.value.password}" mat-raised-button type="submit" [disabled]="!Userdetails.value.username || !Userdetails.value.password">SIGN IN</button>
 
@@ -30,8 +35,7 @@
     </form>
   </mat-card>
 </div>
-<!-- <mat-spinner *ngIf="isLoading" class="custom-spinner"></mat-spinner>
- -->
+
 <ng-template #popupcontainer>
   <div class="popup-container">
     <div class="popup error-popup">
