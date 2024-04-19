@@ -59,7 +59,9 @@ export class AddDsrComponent implements OnInit {
     };
     this.dataSource.filter = filterValue.trim().toLowerCase();
   }
-  
+
+
+
   getProducts(): void {
     this.productService.getProducts().subscribe({
       next: (allProducts: Product[] | Product) => {

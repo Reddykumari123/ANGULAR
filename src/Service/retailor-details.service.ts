@@ -53,9 +53,5 @@ export class RetailorDetailsService {
   }
   getRetailorNamesbyexecutive(Id: any): Observable<any> {
     return this.httpClient.get(`${this.assignedRetailorsbyexecutiveUrl}/${Id}`);
-  }
- 
-  
-  
-  
+  }  
 }
