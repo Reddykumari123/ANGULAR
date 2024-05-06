@@ -21,7 +21,6 @@ export class RetailorDetailsService {
   assignedRetailorsbyexecutiveUrl:"https://localhost:44335/api/AssignDistributorToExecutive/Details";
 
   
-
   private infoButtonClickSubject = new BehaviorSubject<RetailorDetails>(null);
    infoButtonClick = this.infoButtonClickSubject.asObservable();
 

@@ -22,7 +22,7 @@ import { Location } from '@angular/common';
 })
 export class AddDsrComponent implements OnInit {
   displayedColumns = ['productName', 'quantity', 'price', 'productTotal'];
-  dataSource = new MatTableDataSource<Product>();
+  dataSource = new MatTableDataSource<Product>([]);
 
   selectedDate: Date = new Date();
   retailers: any[] = [];
@@ -40,18 +40,16 @@ export class AddDsrComponent implements OnInit {
     private activeRoute: ActivatedRoute,
     private retailorService: RetailorDetailsService,
     private location: Location
-  ) {
-    this.activeRoute.paramMap.subscribe((params: ParamMap) => {
-      this.distributorid = params.get('id');
-      this.ExecutiveId = params.get('Id');
-    });
-  }
+  ) {}
 
   ngOnInit(): void {
     this.setupHardwareBackButton();
-    this.getProducts();
+    this.activeRoute.paramMap.subscribe((params: ParamMap) => {
+      this.distributorid = params.get('id');
+      this.ExecutiveId = params.get('Id');
+      this.getProducts();
+    });
   }
-
 
   applyFilter(filterValue: string) {
     this.dataSource.filterPredicate = (data: any, filter: string) => {
@@ -59,7 +57,7 @@ export class AddDsrComponent implements OnInit {
     };
     this.dataSource.filter = filterValue.trim().toLowerCase();
   }
-  
+
   getProducts(): void {
     this.productService.getProducts().subscribe({
       next: (allProducts: Product[] | Product) => {
@@ -67,6 +65,8 @@ export class AddDsrComponent implements OnInit {
           allProducts.forEach(x => x.quantity = '');
           this.dataSource.data = allProducts;
         }
+      },
+      error: (error) => {
       }
     });
 
@@ -74,6 +74,8 @@ export class AddDsrComponent implements OnInit {
       next: (data) => {
         this.retailorNames = data;
         this.areas = Array.from(new Set(data.map((retailer: any) => retailer.area)));
+      },
+      error: (error) => {
       }
     });
   }
