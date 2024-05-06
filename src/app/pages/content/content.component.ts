@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { MaterialModule } from '../../material.module';
 import { RetailorDetailsService } from '../../../Service/retailor-details.service';
 import { ActivatedRoute, Route } from '@angular/router';
-import { RouterModule,RouterOutlet } from '@angular/router';
+import { RouterModule, RouterOutlet } from '@angular/router';
 import { RetailorDetails } from '../../Models/retailor-details';
 import { MatDatepickerInputEvent, MatDatepickerModule } from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core';
@@ -10,21 +10,19 @@ import { FormsModule } from '@angular/forms';
 import { DatePipe } from '@angular/common';
 import { GpsService } from '../../../Service/gps.service';
 
-
-
 @Component({
   selector: 'app-content',
   standalone: true,
-  imports: [MaterialModule,RouterModule,RouterOutlet,MatDatepickerModule,MatNativeDateModule,FormsModule,DatePipe],
+  imports: [MaterialModule, RouterModule, RouterOutlet, MatDatepickerModule, MatNativeDateModule, FormsModule, DatePipe],
   templateUrl: './content.component.html',
   styleUrl: './content.component.scss'
 })
 export class ContentComponent implements OnInit {
- /*  distributorId: any;
-  executiveId: any; */
-  id:any;
+
+  id: any;
   retailorList: RetailorDetails[] = [];
   filteredRetailorList: RetailorDetails[] = [];
+  filteredRetailorListByArea: RetailorDetails[] = []; // New property for filtered list by area
   noDataFound: boolean;
   DSRCount: number;
   Id: any;
@@ -40,10 +38,9 @@ export class ContentComponent implements OnInit {
     this.activeRoute.queryParams.subscribe((params: any) => {
       console.log('Route Params:', params);
 
-   
-    this.Id = params.ExecutiveId;
-    this.id =params.distributorId;
-      
+      this.Id = params.ExecutiveId;
+      this.id = params.distributorId;
+
     });
 
     this.loadRetailorList();
@@ -68,7 +65,7 @@ export class ContentComponent implements OnInit {
       console.error('Missing distributorId or executiveId');
     }
   }
-  
+
   loadRetailorListByDistributorId() {
     this.retailorDetailService.getRetailorsListByDistributorId(this.id).subscribe({
       next: (data: RetailorDetails[] | RetailorDetails) => {
@@ -84,7 +81,7 @@ export class ContentComponent implements OnInit {
       }
     });
   }
-  
+
   loadRetailorListByExecutiveId() {
     this.retailorDetailService.getRetailorsListByExecutiveId(this.Id).subscribe({
       next: (data: RetailorDetails[] | RetailorDetails) => {
@@ -100,7 +97,6 @@ export class ContentComponent implements OnInit {
       }
     });
   }
-  
 
   applyFilter(filterValue: string) {
     filterValue = filterValue.trim().toLowerCase();
@@ -114,9 +110,30 @@ export class ContentComponent implements OnInit {
     this.noDataFound = this.filteredRetailorList.length === 0;
   }
 
+  applyFilterByArea(area: string) {
+    if (area) {
+      this.filteredRetailorListByArea = this.retailorList.filter(retailor =>
+        retailor.area && retailor.area.toLowerCase().includes(area.toLowerCase())
+      );
+    } else {
+      this.filteredRetailorListByArea = this.retailorList.slice();
+    }
+    this.applyCombinedFilter();
+  }
+  
+
+  applyCombinedFilter() {
+    if (this.filteredRetailorListByArea.length > 0) {
+      this.filteredRetailorList = this.filteredRetailorList.filter(retailor =>
+        this.filteredRetailorListByArea.includes(retailor)
+      );
+    }
+    this.noDataFound = this.filteredRetailorList.length === 0;
+  }
+
   onDateChanged(event: MatDatepickerInputEvent<Date>) {
     const selectedDateStr = this.datePipe.transform(event.value, 'MM-dd-yyyy');
-    const id = this.id? this.id: this.Id;
+    const id = this.id ? this.id : this.Id;
     this.retailorDetailService.getRetailorsListByDate(id, selectedDateStr).subscribe({
       next: (retailorListDetails: RetailorDetails[] | RetailorDetails) => {
         if (Array.isArray(retailorListDetails)) {
@@ -130,7 +147,7 @@ export class ContentComponent implements OnInit {
       }
     });
   }
-
+  
   onInfoButtonClick(retailorDetail: RetailorDetails) {
     this.retailorDetailService.setdetails(retailorDetail);
   }

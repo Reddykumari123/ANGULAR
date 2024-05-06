@@ -10,7 +10,7 @@ import { RetailorDetails } from '../app/Models/retailor-details';
 })
 export class ExecutiveService {
  
- // baseurl = "https://localhost:44335/api/Dsr/ExecId?ExecId=";
+  baseurl = "https://localhost:44335/api/Dsr/ExecId?ExecId=";
   private apiUrl = 'https://localhost:44335/api/Executive/Login';
 
   constructor(private httpClient: HttpClient) { }
@@ -18,7 +18,7 @@ export class ExecutiveService {
   getData(userDetails: Login): Observable<UserDetails> {
     return this.httpClient.post<UserDetails>(this.apiUrl, userDetails);
   }
- /*  getRetailorsListById(id: any): Observable<RetailorDetails> {
+  getRetailorsListById(id: any): Observable<RetailorDetails> {
     return this.httpClient.get<RetailorDetails>(`${this.baseurl}${id}`);
-  } */
+  } 
 }

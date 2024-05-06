@@ -6,6 +6,7 @@ import { ActivatedRoute, RouterModule, RouterOutlet } from '@angular/router';
 import { ProfileComponent } from '../profile/profile.component';
 import { ProductsComponent } from '../products/products.component';
 import { MatDialog } from '@angular/material/dialog';
+import { Router } from '@angular/router';
 
 
 import { MatSidenav } from '@angular/material/sidenav';
@@ -21,20 +22,27 @@ export class MenuComponent {
   @ViewChild('sidenav') sidenav!: MatSidenav;
   userName: any;
   @Input() userDetails: any; 
+  showLogoutPopup: boolean = false;
 
-  constructor(private activeRoute: ActivatedRoute, private dialog: MatDialog) {
+  constructor(private activeRoute: ActivatedRoute, 
+              private dialog: MatDialog,
+              private router: Router) { 
     activeRoute.queryParams.subscribe((x: any) => this.userName = x.UserName);
-  } 
+  }
 
   toggleSidenav() {
     this.sidenav.toggle();
   }
 
-  logout(): void {
-    const confirmLogout = confirm('Are you sure you want to log out?');
+  openLogoutPopup() {
+    this.showLogoutPopup = true;
+  }
 
-    if (confirmLogout) {
-      window.location.href = '/products'; 
-    }
+  closeLogoutPopup() {
+    this.showLogoutPopup = false;
+  }
+
+  logout() {
+    this.router.navigate(['/products']); 
   }
 }
