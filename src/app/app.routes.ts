@@ -7,7 +7,8 @@ import { ProfileComponent } from './Components/profile/profile.component';
 import { AddDsrComponent } from './pages/add-dsr/add-dsr.component';
 import { RetailorDetailsComponent } from './pages/retailor-details/retailor-details.component';
 import { ProductsComponent } from './Components/products/products.component';
-import { NotificationsComponent } from './Components/notifications/notifications.component';
+import { NotificationsComponent } from './pages/notifications/notifications.component';
+import { ReportsComponent } from './pages/reports/reports.component';
 
 
 
@@ -29,7 +30,8 @@ export const routes: Routes =
     { path: 'RetailorDetails', component: RetailorDetailsComponent },
     { path: 'products', component: ProductsComponent },
     { path: 'products/Home', component: HomeComponent },
-    {path:'notifications',component:NotificationsComponent}
+    {path:'notifications',component:NotificationsComponent},
+    {path:'Reports',component:ReportsComponent}
  
 
 ];

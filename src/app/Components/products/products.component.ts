@@ -37,14 +37,17 @@ export class ProductsComponent implements OnInit {
       }
     });
   }
-
   applyFilter(filterValue: string) {
     if (!filterValue) {
       this.filteredList = [...this.allProducts];
       return;
     }
-    this.filteredList = this.allProducts.filter(product =>
-      product.productName.toLowerCase().startsWith(filterValue.trim().toLowerCase())
-    );
+    this.filteredList = this.allProducts.filter(product => {
+      const productName = product.productName;
+      if (productName) {
+        return productName.toLowerCase().startsWith(filterValue.trim().toLowerCase());
+      }
+      return false; 
+    });
   }
-}
+}  

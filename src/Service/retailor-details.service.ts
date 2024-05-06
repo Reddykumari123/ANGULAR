@@ -10,7 +10,7 @@ import { ProductsByDsrId } from '../app/Models/products-by-dsr-id';
 export class RetailorDetailsService {
   
 
-  apiUrl = "https://localhost:44335/api/Dsr/RetailorDetails";
+  apiUrl = "https://localhost:44335/api/Dsr/DistributorId?DistributorId=";
 
   productsApiUrl = "https://localhost:44335/api/Dsrdetail?dsrId=";
 
@@ -21,8 +21,6 @@ export class RetailorDetailsService {
   assignedRetailorsbyexecutiveUrl:"https://localhost:44335/api/AssignDistributorToExecutive/Details";
 
   
-
-
   private infoButtonClickSubject = new BehaviorSubject<RetailorDetails>(null);
    infoButtonClick = this.infoButtonClickSubject.asObservable();
 
@@ -33,7 +31,7 @@ export class RetailorDetailsService {
   constructor(private httpClient: HttpClient) { }
 
   getRetailorsListByDistributorId(id: any): Observable<RetailorDetails> {
-    return this.httpClient.get<RetailorDetails>(`${this.apiUrl}/${id}`);
+    return this.httpClient.get<RetailorDetails>(`${this.apiUrl}${id}`);
   }
   
 
@@ -55,6 +53,7 @@ export class RetailorDetailsService {
   getRetailorNamesbyexecutive(Id: any): Observable<any> {
     return this.httpClient.get(`${this.assignedRetailorsbyexecutiveUrl}/${Id}`);
   }
+ 
   
   
   

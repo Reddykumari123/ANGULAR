@@ -147,7 +147,7 @@ export class ContentComponent implements OnInit {
       }
     });
   }
-
+  
   onInfoButtonClick(retailorDetail: RetailorDetails) {
     this.retailorDetailService.setdetails(retailorDetail);
   }

@@ -10,6 +10,13 @@
   <mat-datepicker #picker></mat-datepicker>
 </mat-form-field>
 
+
+<mat-form-field class="searchfilter">
+  <mat-icon matPrefix>search</mat-icon>
+  <mat-label>Area</mat-label>
+  <input matInput placeholder="Area" #areaInput (keyup)="applyFilterByArea(areaInput.value)">
+</mat-form-field>
+
 <mat-form-field class="searchfilter">
   <mat-icon matPrefix>search</mat-icon>
   <mat-label>Area</mat-label>
@@ -41,7 +48,7 @@
         <span class="retailer-label">Area : {{ retailorlist.area ? retailorlist.area : 'Null' }}</span>
 
         <span class="retailer-label">TotalAmount : {{ retailorlist.totalAmount ? retailorlist.totalAmount : '0' }}</span>
-        <span class="retailer-label">CreatedDate: {{ retailorlist.createdDate ? (retailorlist.createdDate | date: 'dd-MM-yyyy') : '0' }}</span>
+        <span class="retailer-label">CreatedDate: {{ retailorlist.createdDate ? (retailorlist.createdDate | date: 'MM-dd-yyyy') : '0' }}</span>
       </div>
     </div>
   </button>

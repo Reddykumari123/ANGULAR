@@ -67,16 +67,60 @@
     font-weight: bold;
    
   }
-  .logout-button{
+  .logout-button {
     background-color: transparent !important;
-    background-color: transparent; 
-    border: none; 
-    cursor: pointer; 
-    padding: 0; 
-  
+    border: none;
+    cursor: pointer;
+    padding: 0;
   }
- 
-
-
-
-
+  
+  .logout-popup {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .popup-content {
+    background-color: white;
+    padding: 40px;
+    border-radius: 10px;
+    text-align: center;
+  }
+  
+  .buttons button {
+    margin: 0 10px;
+    border: 2px solid black; /* Added black border */
+    border-radius: 5px;
+    font-weight: bold; /* Bold text */
+    padding: 10px 20px; /* Increased padding */
+    font-size: 18px; /* Increased font size */
+  }
+  
+  .buttons .yes-button {
+    background-color: red;
+    color: black;
+    cursor: pointer;
+    transition: background-color 0.3s;
+  }
+  
+  .buttons .yes-button:hover {
+    background-color: white;
+  }
+  
+  .buttons .no-button {
+    background-color: #fbce07;
+    color: black;
+    cursor: pointer;
+    transition: background-color 0.3s;
+  }
+  
+  .buttons .no-button:hover {
+    background-color: white;
+  }
+  

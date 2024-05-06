@@ -11,7 +11,8 @@
         <span class="dsr">DSR</span>
       </a>
       <mat-divider></mat-divider>
-      <a mat-list-item routerLink="/Content">
+
+      <a mat-list-item routerLink="/Reports">
         <mat-icon class="custom-icon">addchart</mat-icon> 
         <span class="reports">Reports</span>
       </a>
@@ -37,9 +38,20 @@
       
       <span class="personName">Hello {{userName}}!</span>
 
-      <button class="logout-button" (click)="logout()">
+      <button class="logout-button" (click)="openLogoutPopup()">
         <span class="material-icons">logout</span>
       </button>
+      
+      <div class="logout-popup" *ngIf="showLogoutPopup">
+        <div class="popup-content">
+          <p>Are you sure you want to logout?</p>
+          <div class="buttons">
+            <button class="yes-button" (click)="logout()">Yes</button>
+            <button class="no-button" (click)="closeLogoutPopup()">No</button>
+          </div>
+          
+        </div>
+      </div>
 
       
       
