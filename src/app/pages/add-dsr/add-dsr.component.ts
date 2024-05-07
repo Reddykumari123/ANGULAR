@@ -66,6 +66,7 @@ export class AddDsrComponent implements OnInit {
     this.productService.getProducts().subscribe({
       next: (allProducts: Product[] | Product) => {
         if (Array.isArray(allProducts)) {
+          this.productService.saveProducts(allProducts);
           allProducts.forEach(x => x.quantity = '');
           this.dataSource.data = allProducts;
         }

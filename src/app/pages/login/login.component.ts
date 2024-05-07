@@ -71,6 +71,7 @@ export class LoginComponent {
     this.userDetails = userdetails;
     this.profileService.setdetails(this.userDetails);
     if (role === 'DISTRIBUTOR') {
+      this.distributorService.saveDistributordetails(this.userDetails);
       this.router.navigate(['/Menu'], { queryParams: { distributorId: this.userDetails.id, UserName: this.userName.nativeElement.value } });
     } else if (role === 'EXECUTIVE') {
       this.router.navigate(['/Menu'], { queryParams: { ExecutiveId: this.userDetails.id, UserName: this.userName.nativeElement.value } });

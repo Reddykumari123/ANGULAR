@@ -16,7 +16,7 @@ export class RetailorDetailsService {
 
   assignedRetailorsbydistirbutorUrl ="https://localhost:44335/api/AssignRetailorToDistributor/Details";
 
-  baseurl = "https://localhost:44335/api/Dsr/RetailorDetailsbyExe";
+  baseurl = "https://localhost:44335/api/Dsr/RetailorDetailsbyExe?ExecId=";
 
   assignedRetailorsbyexecutiveUrl:"https://localhost:44335/api/AssignDistributorToExecutive/Details";
 
@@ -37,7 +37,7 @@ export class RetailorDetailsService {
   
 
   getRetailorsListByExecutiveId(executiveId: any): Observable<RetailorDetails[]> {
-    return this.httpClient.get<RetailorDetails[]>(`${this.baseurl}/${executiveId}`);
+    return this.httpClient.get<RetailorDetails[]>(`${this.baseurl}${executiveId}`);
   }
 
   getProductsById(id: any): Observable<ProductsByDsrId> {
