@@ -1,22 +1,55 @@
 <h1 class="heading">Reports</h1>
+<mat-form-field>
+  <mat-label>Select Area:</mat-label>
+  <mat-select [(value)]="selectedArea" (selectionChange)="selectArea($event.value)">
+    <!-- Default empty option -->
+    <mat-option [value]="null">-- Select Area --</mat-option>
+    <!-- Use ng-container to conditionally render options -->
+    <ng-container *ngFor="let area of areas">
+      <mat-option *ngIf="area.areaName.toLowerCase().includes(searchText.toLowerCase())" [value]="area.id">
+        {{ area.areaName }}
+      </mat-option>
+    </ng-container>
+  </mat-select>
+</mat-form-field>
 
-<!-- <mat-form-field class="searchfilter">
-  <mat-icon matPrefix>search</mat-icon>
-  <mat-label>Area</mat-label>
-  <input matInput placeholder="Area" [(ngModel)]="filterByArea">
-</mat-form-field> -->
+<mat-form-field>
+  <mat-label>Select a country</mat-label>
+  <mat-select #countrySelect>
+    <mat-select-trigger>{{ countrySelect.value }}</mat-select-trigger>
 
-<div>
-  <label for="areaDropdown">Select Area:</label>
-  <select id="areaDropdown" [(ngModel)]="area">
-    <option value="">All Areas</option>
-    <option *ngFor="let area of areas" [value]="area.id">{{ area.areaName}}</option>
-  </select>
-</div>
+    <!-- <mat-option>
+      <lib-mat-select-search
+        [list]="countries"
+        [searchProperties]="['dialCode', 'name']"
+        (filtered)="filteredCountries = $event"
+      >
+      </lib-mat-select-search>
+    </mat-option> -->
+
+    <!-- <mat-option
+      *ngFor="let country of filteredCountries"
+      [value]="country.name"
+    >
+      <div class="country-container">
+        <span>{{ country.name }}</span
+        ><span>{{ country.dialCode }}</span>
+      </div>
+    </mat-option> -->
+  </mat-select>
+</mat-form-field>
+<label>{{ selectedAreaName }}</label>
+
+
+
+
+
+
+
 
 
 <ul class="sales-reports">
-  <li *ngFor="let report of filteredReports" class="sales-report-item">
+  <li *ngFor="let report of salesReports" class="sales-report-item">
     <div class="report-details">
       <p><strong>Area:</strong> {{ report.area }}</p>
       <p><strong>Executive:</strong> {{ report.executive }}</p>

@@ -57,11 +57,11 @@ export class AddDsrComponent implements OnInit {
     };
     this.dataSource.filter = filterValue.trim().toLowerCase();
   }
-
   getProducts(): void {
     this.productService.getProducts().subscribe({
       next: (allProducts: Product[] | Product) => {
         if (Array.isArray(allProducts)) {
+          this.productService.saveProducts(allProducts);
           allProducts.forEach(x => x.quantity = '');
           this.dataSource.data = allProducts;
         }
