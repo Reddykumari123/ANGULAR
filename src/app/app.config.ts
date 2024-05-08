@@ -7,10 +7,9 @@ import { provideHttpClient, withFetch, withInterceptors } from '@angular/common/
 import { apikeyInterceptor } from '../Interceptors/apikey.interceptor';
 import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
 import { DatePipe } from '@angular/common';
-import { SQLite } from '@ionic-native/sqlite/ngx';
 
 
 
 export const appConfig: ApplicationConfig = {
-  providers: [provideRouter(routes), provideClientHydration(), provideHttpClient(withInterceptors([apikeyInterceptor])), provideHttpClient(withFetch()), provideAnimationsAsync(),DatePipe,SQLite]
+  providers: [provideRouter(routes), provideClientHydration(), provideHttpClient(withInterceptors([apikeyInterceptor])), provideHttpClient(withFetch()), provideAnimationsAsync(),DatePipe]
 };
