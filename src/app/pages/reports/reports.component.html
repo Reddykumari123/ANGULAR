@@ -13,32 +13,17 @@
   </mat-select>
 </mat-form-field>
 
+
+
 <mat-form-field>
-  <mat-label>Select a country</mat-label>
-  <mat-select #countrySelect>
-    <mat-select-trigger>{{ countrySelect.value }}</mat-select-trigger>
-
-    <!-- <mat-option>
-      <lib-mat-select-search
-        [list]="countries"
-        [searchProperties]="['dialCode', 'name']"
-        (filtered)="filteredCountries = $event"
-      >
-      </lib-mat-select-search>
-    </mat-option> -->
-
-    <!-- <mat-option
-      *ngFor="let country of filteredCountries"
-      [value]="country.name"
-    >
-      <div class="country-container">
-        <span>{{ country.name }}</span
-        ><span>{{ country.dialCode }}</span>
-      </div>
-    </mat-option> -->
+  <mat-select placeholder="Select Area">
+      <input matInput placeholder="Filter" (input)="filterAreas($event)">
+      <mat-option *ngFor="let area of areas" [value]="area">
+          {{area.areaName}}
+      </mat-option>
   </mat-select>
 </mat-form-field>
-<label>{{ selectedAreaName }}</label>
+<!-- <label>{{ selectedAreaName }}</label> -->
 
 
 
@@ -48,7 +33,7 @@
 
 
 
-<ul class="sales-reports">
+<!-- <ul class="sales-reports">
   <li *ngFor="let report of salesReports" class="sales-report-item">
     <div class="report-details">
       <p><strong>Area:</strong> {{ report.area }}</p>
@@ -63,5 +48,5 @@
       <p><strong>Sale Amount:</strong> {{ report.saleAmount }}</p>
     </div>
   </li>
-</ul>
+</ul> -->
 
