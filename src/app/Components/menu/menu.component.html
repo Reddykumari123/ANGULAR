@@ -18,9 +18,15 @@
       </a>
       <mat-divider></mat-divider>
       <a mat-list-item routerLink="/notifications">
-     <mat-icon class="custom-icon">notifications</mat-icon> 
-     <span class="reports">Notifications</span>
+        <ng-container *ngIf="userDetails.id.startsWith('NDIS')">
+          <mat-icon class="custom-icon" matBadge="{{ distributorNotificationsCount }}" matBadgeColor="warn">notifications</mat-icon>
+        </ng-container>
+        <ng-container *ngIf="userDetails.id.startsWith('NEXE')">
+          <mat-icon class="custom-icon" matBadge="{{ executiveNotificationsCount }}" matBadgeColor="warn">notifications</mat-icon>
+        </ng-container>
+        <span class="reports">Notifications</span>
       </a>
+      
       <mat-divider></mat-divider>
       <a mat-list-item routerLink="/products">
         <mat-icon class="custom-icon">add_shopping_cart</mat-icon> 
@@ -36,7 +42,7 @@
         <mat-icon>menu</mat-icon>
       </button>
       
-      <span class="personName">Hello {{userName}}!</span>
+      <span class="personName">Hello {{userDetails.userName}}!</span>
 
       <button class="logout-button" (click)="openLogoutPopup()">
         <span class="material-icons">logout</span>

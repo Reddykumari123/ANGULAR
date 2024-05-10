@@ -7,13 +7,14 @@ const details : RxJsonSchema<UserDetails> = {
     type: 'object',
     properties: {
         id: { type: 'string' },
-        firstName: { type: 'string' },
-        lastName: { type: 'string' },
+        FirstName: { type: 'string' },
+        LastName: { type: 'string' },
         email: { type: 'string' },
         mobileNumber: { type: 'string' },
         address: { type: 'string' },
         executives: { type: 'string' },
-        presignedUrl:{type:'string'}
+        presignedUrl:{type:'string'},
+        userName:{type:'string'}
     },
     primaryKey: 'id',
 };
