@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { UserDetails } from '../app/Models/user-details';
-import { BehaviorSubject } from 'rxjs';
+import { BehaviorSubject, Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -8,14 +8,19 @@ import { BehaviorSubject } from 'rxjs';
 export class ProfileService {
  
 
-  private details = new BehaviorSubject<UserDetails>(null); 
-  getdetails = this.details.asObservable();
+  private userDetailsSubject = new BehaviorSubject<UserDetails>(null);
+  userDetails$ = this.userDetailsSubject.asObservable();
 
-  constructor() {}
+  constructor() { }
 
-  setdetails(details: UserDetails) {
-    this.details.next(details);
+  setUserDetails(userDetails: UserDetails) {
+    this.userDetailsSubject.next(userDetails);
   }
+
+  getUserDetails(): Observable<UserDetails> {
+    return this.userDetailsSubject.asObservable();
+  }
+
 }
 
 

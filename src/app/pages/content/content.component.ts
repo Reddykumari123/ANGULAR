@@ -9,6 +9,7 @@ import { MatNativeDateModule } from '@angular/material/core';
 import { FormsModule } from '@angular/forms';
 import { DatePipe } from '@angular/common';
 import { GpsService } from '../../../Service/gps.service';
+import { ProfileService } from '../../../Service/profile.service'; // Import the ProfileService
 
 @Component({
   selector: 'app-content',
@@ -22,28 +23,29 @@ export class ContentComponent implements OnInit {
   id: any;
   retailorList: RetailorDetails[] = [];
   filteredRetailorList: RetailorDetails[] = [];
-  filteredRetailorListByArea: RetailorDetails[] = []; // New property for filtered list by area
+  filteredRetailorListByArea: RetailorDetails[] = [];
   noDataFound: boolean;
   DSRCount: number;
-  Id: any;
 
   constructor(
     private retailorDetailService: RetailorDetailsService,
     private activeRoute: ActivatedRoute,
     private datePipe: DatePipe,
-    private gpsservice: GpsService
+    private gpsservice: GpsService,
+    private profileService: ProfileService 
   ) { }
 
   ngOnInit(): void {
-    this.activeRoute.queryParams.subscribe((params: any) => {
-      console.log('Route Params:', params);
-
-      this.Id = params.ExecutiveId;
-      this.id = params.distributorId;
-
+    this.profileService.getUserDetails().subscribe(userDetails => {
+      if (userDetails) {
+        this.id = userDetails.id;
+        this.loadRetailorList();
+      }
+      
+      else {
+        console.error('User details not available');
+      }
     });
-
-    this.loadRetailorList();
 
     if (navigator.geolocation) {
       navigator.geolocation.watchPosition((position) => {
@@ -57,14 +59,15 @@ export class ContentComponent implements OnInit {
   }
 
   loadRetailorList() {
-    if (this.id) {
+    if (this.id && this.id.startsWith('NDIS')) {
       this.loadRetailorListByDistributorId();
-    } else if (this.Id) {
-      this.loadRetailorListByExecutiveId();
+    } else if (this.id && this.id.startsWith('NEXE')) {
+      this.loadRetailorListByExecutievId();
     } else {
-      console.error('Missing distributorId or executiveId');
+      console.error('Invalid or missing user id');
     }
   }
+  
 
   loadRetailorListByDistributorId() {
     this.retailorDetailService.getRetailorsListByDistributorId(this.id).subscribe({
@@ -77,13 +80,12 @@ export class ContentComponent implements OnInit {
         }
       },
       error: (error) => {
-        console.error('Error fetching retailer details by distributor ID:', error);
+        console.error('Error fetching retailer details by user ID:', error);
       }
     });
   }
-
-  loadRetailorListByExecutiveId() {
-    this.retailorDetailService.getRetailorsListByExecutiveId(this.Id).subscribe({
+  loadRetailorListByExecutievId() {
+    this.retailorDetailService.getRetailorsListByExecutiveId(this.id).subscribe({
       next: (data: RetailorDetails[] | RetailorDetails) => {
         if (Array.isArray(data)) {
           this.retailorList = data;
@@ -93,7 +95,7 @@ export class ContentComponent implements OnInit {
         }
       },
       error: (error) => {
-        console.error('Error fetching retailer details by executive ID:', error);
+        console.error('Error fetching retailer details by user ID:', error);
       }
     });
   }
@@ -120,7 +122,6 @@ export class ContentComponent implements OnInit {
     }
     this.applyCombinedFilter();
   }
-  
 
   applyCombinedFilter() {
     if (this.filteredRetailorListByArea.length > 0) {
@@ -133,8 +134,7 @@ export class ContentComponent implements OnInit {
 
   onDateChanged(event: MatDatepickerInputEvent<Date>) {
     const selectedDateStr = this.datePipe.transform(event.value, 'MM-dd-yyyy');
-    const id = this.id ? this.id : this.Id;
-    this.retailorDetailService.getRetailorsListByDate(id, selectedDateStr).subscribe({
+    this.retailorDetailService.getRetailorsListByDate(this.id, selectedDateStr).subscribe({
       next: (retailorListDetails: RetailorDetails[] | RetailorDetails) => {
         if (Array.isArray(retailorListDetails)) {
           this.retailorList = retailorListDetails;

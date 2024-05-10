@@ -61,10 +61,7 @@ export class ReportsComponent implements OnInit {
     this.updateSelectedAreaName();
   }
 
-  // Custom comparison function for mat-select
-  compareAreas(area1: any, area2: any): boolean {
-    return area1 && area2 ? area1.id === area2.id : area1 === area2;
-  }
+
 
   filterAreas(event: Event): void {
     const filterValue = (event.target as HTMLInputElement).value;

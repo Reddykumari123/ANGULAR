@@ -69,12 +69,13 @@ export class LoginComponent {
 
   handleLogin(userdetails: UserDetails, role: string) {
     this.userDetails = userdetails;
-    this.profileService.setdetails(this.userDetails);
+    this.profileService.setUserDetails(this.userDetails);
+    console.log(this.userDetails);
     if (role === 'DISTRIBUTOR') {
       this.distributorService.saveDistributordetails(this.userDetails);
-      this.router.navigate(['/Menu'], { queryParams: { distributorId: this.userDetails.id, UserName: this.userName.nativeElement.value } });
+      this.router.navigate(['/Menu'],);
     } else if (role === 'EXECUTIVE') {
-      this.router.navigate(['/Menu'], { queryParams: { ExecutiveId: this.userDetails.id, UserName: this.userName.nativeElement.value } });
+      this.router.navigate(['/Menu'],);
     }
   }
 

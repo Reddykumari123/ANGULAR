@@ -6,14 +6,17 @@ import { Observable } from 'rxjs';
   providedIn: 'root'
 })
 export class NotificationsService {
-
   private apiUrl = 'https://localhost:44335/api/NotificationDistributor/Notification/DistributorId';
-  
+  private exeUrl = 'https://localhost:44335/api/NotificationDistributor/Notifications/';
 
   constructor(private http: HttpClient) { }
 
-  getNotifications(distributorId: string): Observable<any> {
+  getNotificationsByDistributorId(distributorId: string): Observable<any> {
     return this.http.get(`${this.apiUrl}?DistributorId=${distributorId}`);
+  }
+
+  getNotificationsByExecutiveId(executiveId: string): Observable<any> {
+    return this.http.get(`${this.exeUrl}${executiveId}`);
   }
 
 }

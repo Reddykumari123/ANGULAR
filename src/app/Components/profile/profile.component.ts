@@ -19,7 +19,7 @@ export class ProfileComponent  {
   constructor(private profileService: ProfileService, private location :Location) {}
 
   ngOnInit(): void {
-    this.profileService.getdetails.subscribe((userDetails: UserDetails) => {
+    this.profileService.userDetails$.subscribe((userDetails: UserDetails) => {
       this.userDetails = userDetails;
       console.log(this.userDetails);
     });
