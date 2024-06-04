@@ -17,9 +17,9 @@ export class ReportsComponent implements OnInit {
   areas: Areas[] = [];
   area: string = 'arn28';
   endDate: string = '2024-02-24';
-  searchText: string = ''; // Property to store search text
-  selectedAreaName: string = ''; // Property to store selected area name
-  selectedArea: string = ''; // Property to store selected area ID
+  searchText: string = ''; 
+  selectedAreaName: string = ''; 
+  selectedArea: string = ''; 
 
   constructor(private salesReportService: ReportsService) { }
 
@@ -42,20 +42,17 @@ export class ReportsComponent implements OnInit {
       });
   }
 
-  // Getter for filtered areas based on search text
   get filteredAreas(): Areas[] {
     return this.areas.filter(area =>
       area.areaName.toLowerCase().includes(this.searchText.toLowerCase())
     );
   }
 
-  // Method to update selected area's name
   updateSelectedAreaName() {
     const selectedArea = this.areas.find(area => area.id === this.selectedArea);
     this.selectedAreaName = selectedArea ? selectedArea.areaName : '';
   }
 
-  // Method to handle area selection
   selectArea(areaId: string) {
     this.selectedArea = areaId;
     this.updateSelectedAreaName();

@@ -3,10 +3,8 @@ import { Product } from "../app/Models/product";
 import { RXDBService } from "./rxdb.service";
 import { RxCollection } from "rxdb";
 import { Injectable } from "@angular/core";
-import { Observable } from "rxjs";
+import { BehaviorSubject, Observable } from "rxjs";
 import allProducts from "../Schemas/Products";
-
-
 
 @Injectable({
   providedIn: 'root'
@@ -20,14 +18,13 @@ export class ProductService {
     this.initCollections();
   }
 
-  getProducts():Observable<Product>{
-    return this.httpclient.get<Product>(this.ApiUrl);
+  getProducts(): Observable<Product[]> {
+    return this.httpclient.get<Product[]>(this.ApiUrl);
   }
   
   private async initCollections() {
     try {
       const db = await this.rxdbService.ensureIsDatabaseCreated();
-
       this.allProductsCollection = (await this.rxdbService.db.addCollections({
         Products: {
           schema: allProducts,
@@ -39,6 +36,18 @@ export class ProductService {
   }
 
   async saveProducts(data: Product[]) {
-    this.allProductsCollection.insert(data);
+    try {
+      await this.allProductsCollection.insert(data);
+    } catch (error) {
+      console.error('Error saving products:', error);
+    }
+  }
+
+  private details = new BehaviorSubject<Product[]>(null); 
+  getdetails = this.details.asObservable();
+  
+  DisplaySelectedProducts(product:Product[]){
+    this.details.next(product);
+    
   }
 }

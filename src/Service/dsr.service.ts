@@ -1,0 +1,50 @@
+import { HttpClient } from '@angular/common/http';
+import { Injectable } from '@angular/core';
+import { ProductDetails } from '../app/Models/product-details';
+import { Observable } from 'rxjs';
+
+@Injectable({
+  providedIn: 'root'
+})
+export class DsrService {
+
+  SelectedDate:Date;
+  SelectedRetailer:string |undefined;
+
+ApiUrl="https://localhost:44335/api/Dsr";
+
+
+  constructor(private httpclient:HttpClient) { }
+ Postproducts(prod:ProductDetails):Observable<ProductDetails>
+ {
+  return this.httpclient.post<ProductDetails>(this.ApiUrl,prod);
+ }
+ setdate(date:Date)
+ {
+  return this.SelectedDate =date;
+ }
+ getdate()
+ {
+  return this.SelectedDate;
+ }
+ setRetailor(name:string)
+ {
+  return this.SelectedRetailer =name;;
+ }
+ getRetailor()
+ {
+  return this.SelectedRetailer;
+ }
+
+}
+
+
+
+
+
+
+
+
+
+
+

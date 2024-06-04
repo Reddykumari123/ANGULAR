@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { MaterialModule } from '../../material.module';
 import { RetailorDetailsService } from '../../../Service/retailor-details.service';
-import { ActivatedRoute, Route } from '@angular/router';
+import { ActivatedRoute } from '@angular/router';
 import { RouterModule, RouterOutlet } from '@angular/router';
 import { RetailorDetails } from '../../Models/retailor-details';
 import { MatDatepickerInputEvent, MatDatepickerModule } from '@angular/material/datepicker';
@@ -9,7 +9,7 @@ import { MatNativeDateModule } from '@angular/material/core';
 import { FormsModule } from '@angular/forms';
 import { DatePipe } from '@angular/common';
 import { GpsService } from '../../../Service/gps.service';
-import { ProfileService } from '../../../Service/profile.service'; // Import the ProfileService
+import { ProfileService } from '../../../Service/profile.service'; 
 
 @Component({
   selector: 'app-content',
@@ -36,16 +36,13 @@ export class ContentComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    this.profileService.getUserDetails().subscribe(userDetails => {
-      if (userDetails) {
-        this.id = userDetails.id;
-        this.loadRetailorList();
-      }
-      
-      else {
-        console.error('User details not available');
-      }
-    });
+    const userDetails = this.profileService.getUserDetailsFromSessionStorage();
+    if (userDetails) {
+      this.id = userDetails.id;
+      this.loadRetailorList();
+    } else {
+      console.error('User details not available');
+    }
 
     if (navigator.geolocation) {
       navigator.geolocation.watchPosition((position) => {
@@ -67,7 +64,6 @@ export class ContentComponent implements OnInit {
       console.error('Invalid or missing user id');
     }
   }
-  
 
   loadRetailorListByDistributorId() {
     this.retailorDetailService.getRetailorsListByDistributorId(this.id).subscribe({
@@ -84,6 +80,7 @@ export class ContentComponent implements OnInit {
       }
     });
   }
+
   loadRetailorListByExecutievId() {
     this.retailorDetailService.getRetailorsListByExecutiveId(this.id).subscribe({
       next: (data: RetailorDetails[] | RetailorDetails) => {
@@ -147,7 +144,7 @@ export class ContentComponent implements OnInit {
       }
     });
   }
-  
+
   onInfoButtonClick(retailorDetail: RetailorDetails) {
     this.retailorDetailService.setdetails(retailorDetail);
   }

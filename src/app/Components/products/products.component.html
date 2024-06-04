@@ -10,7 +10,7 @@
 <div class="header-image"></div>
 <div class="products-container">
   <div *ngFor="let product of filteredList" class="product-card">
-    <img [src]="product.presignedUrl" alt="Product Image" class="product-image">
+    <img [src]="product.image" alt="Product Image" class="product-image">
     <div class="product-details">
       <p>{{ product.productName }} ({{ product.weight }}gms)</p>
       <p class="red">₹{{ product.price }}</p>

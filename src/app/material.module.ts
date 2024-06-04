@@ -46,7 +46,8 @@ import { MatSidenav } from '@angular/material/sidenav';
     CdkMenuTrigger,
     MatToolbar,
     MatSidenav ,
-    DatePipe
+    DatePipe,   
+
    ],
   exports: [
     MatSidenavModule,

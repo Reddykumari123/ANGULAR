@@ -14,7 +14,8 @@ const details : RxJsonSchema<UserDetails> = {
         address: { type: 'string' },
         executives: { type: 'string' },
         presignedUrl:{type:'string'},
-        userName:{type:'string'}
+        userName:{type:'string'},
+        exeId:{type:'string'}
     },
     primaryKey: 'id',
 };

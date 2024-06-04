@@ -80,9 +80,10 @@
         <input type="number" [ngModel]="product.subtotal" class="custom-input" disabled />
       </td>
       <td mat-footer-cell *matFooterCellDef>
-         {{calculateTotal()}} 
-         <button mat-button (click)="review()" >Review</button>
-        </td>
+        {{calculateTotal()}}
+        <button mat-button class="custom-primary-button" (click)="review()">Review</button>
+      </td>
+      
     </ng-container>
     
     <tr mat-header-row *matHeaderRowDef="displayedColumns; sticky: true"></tr>
