@@ -12,7 +12,9 @@ const allProducts : RxJsonSchema<Product> = {
         price: { type: 'any' },
         quantity: { type: 'any' },
         subtotal: { type: 'any' },
-        presignedUrl: {type: 'any'}
+        image: {type: 'any'},
+        total:{type:'any'},
+        dsr:{type:'any'}
     },
     primaryKey: 'id',
 };

@@ -7,9 +7,17 @@ import { provideHttpClient, withFetch, withInterceptors } from '@angular/common/
 import { apikeyInterceptor } from '../Interceptors/apikey.interceptor';
 import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
 import { DatePipe } from '@angular/common';
+import { productReducer } from '../Store/reducer';
+import { provideStore } from '@ngrx/store';
 
 
 
 export const appConfig: ApplicationConfig = {
-  providers: [provideRouter(routes), provideClientHydration(), provideHttpClient(withInterceptors([apikeyInterceptor])), provideHttpClient(withFetch()), provideAnimationsAsync(),DatePipe]
+  providers: [provideRouter(routes), 
+    provideClientHydration(), 
+    provideHttpClient(withInterceptors([apikeyInterceptor])),
+     provideHttpClient(withFetch()), 
+     provideAnimationsAsync(),
+     DatePipe,
+     provideStore({orderFormSelectedProducts:productReducer})]
 };

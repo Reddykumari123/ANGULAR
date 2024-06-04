@@ -1,28 +1,24 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, OnInit, ViewChild } from '@angular/core';
 import { MaterialModule } from '../../material.module';
-import { ViewChild } from '@angular/core';
 import { ContentComponent } from '../../pages/content/content.component';
-import { ActivatedRoute, RouterModule, RouterOutlet } from '@angular/router';
+import { ActivatedRoute, RouterModule, RouterOutlet, Router } from '@angular/router';
 import { ProfileComponent } from '../profile/profile.component';
 import { ProductsComponent } from '../products/products.component';
 import { MatDialog } from '@angular/material/dialog';
-import { Router } from '@angular/router';
 import { MatBadgeModule } from '@angular/material/badge';
-
-
 import { MatSidenav } from '@angular/material/sidenav';
 import { UserDetails } from '../../Models/user-details';
 import { ProfileService } from '../../../Service/profile.service';
 import { NotificationsService } from '../../../Service/notifications.service';
+
 @Component({
   selector: 'app-menu',
   standalone: true,
-  imports: [MaterialModule,ContentComponent, RouterModule, RouterOutlet,ProfileComponent,ProductsComponent,MatBadgeModule],
+  imports: [MaterialModule, ContentComponent, RouterModule, RouterOutlet, ProfileComponent, ProductsComponent, MatBadgeModule],
   templateUrl: './menu.component.html',
   styleUrl: './menu.component.scss',
-
 })
-export class MenuComponent {
+export class MenuComponent implements OnInit {
   @ViewChild('sidenav') sidenav!: MatSidenav;
   userName: any;
   userDetails: UserDetails;
@@ -43,33 +39,29 @@ export class MenuComponent {
       this.userName = params.UserName;
     });
 
-    this.profileService.userDetails$.subscribe((userDetails: UserDetails) => {
-      this.userDetails = userDetails;
+    this.userDetails = this.profileService.getUserDetailsFromSessionStorage();
+    if (this.userDetails) {
       console.log('User Details:', this.userDetails);
-      // Check role
       console.log('User Role:', this.userDetails.executives);
-    });
-
-    this.fetchNotificationsCounts();
+      this.fetchNotificationsCounts();
+    } else {
+      console.error('User details not available');
+    }
   }
+
   fetchNotificationsCounts(): void {
     if (this.userDetails.id.startsWith('NDIS')) {
-      // Fetch distributor notifications
       this.notificationsService.getNotificationsByDistributorId(this.userDetails.id)
         .subscribe(data => {
-          // Calculate the count from the received data
           this.distributorNotificationsCount = data.length;
         });
     } else if (this.userDetails.id.startsWith('NEXE')) {
-      // Fetch executive notifications
       this.notificationsService.getNotificationsByExecutiveId(this.userDetails.id)
         .subscribe(data => {
-          // Calculate the count from the received data
           this.executiveNotificationsCount = data.length;
         });
     }
   }
-  
 
   toggleSidenav() {
     this.sidenav.toggle();

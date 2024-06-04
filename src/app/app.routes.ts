@@ -9,6 +9,7 @@ import { RetailorDetailsComponent } from './pages/retailor-details/retailor-deta
 import { ProductsComponent } from './Components/products/products.component';
 import { NotificationsComponent } from './pages/notifications/notifications.component';
 import { ReportsComponent } from './pages/reports/reports.component';
+import { ReviewComponent } from './pages/review/review.component';
 
 
 
@@ -31,7 +32,9 @@ export const routes: Routes =
     { path: 'products', component: ProductsComponent },
     { path: 'products/Home', component: HomeComponent },
     {path:'notifications',component:NotificationsComponent},
-    {path:'Reports',component:ReportsComponent}
+    {path:'Reports',component:ReportsComponent},
+    { path: 'CreateDSR/:id/Review', component: ReviewComponent },
+
  
 
 ];

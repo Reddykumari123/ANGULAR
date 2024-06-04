@@ -89,6 +89,25 @@ tr.mat-mdc-footer-row {
   margin-left:8.5px;
   transform:scale(0.85)
 }
+.custom-primary-button {
+  display: block;
+  margin: 0 auto;
+  text-decoration: none;
+  padding: 15px 30px;
+  border-radius: 10px;
+  width: 100%;
+  background-color: #fbce07;
+  color: black;
+  border: 2px solid black;
+  font-size: 15px;
+  font-weight: bold;
+}
+
+.custom-primary-button:hover {
+  background-color: white;
+  border: 3px solid red;
+  color: black;
+}
 
 
 

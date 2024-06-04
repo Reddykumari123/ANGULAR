@@ -1,128 +1,196 @@
-import { Component, ElementRef, OnInit, QueryList, ViewChild, ViewChildren,} from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute, ParamMap, Router } from '@angular/router';
+import { Location } from '@angular/common';
+import { ProductService } from '../../../Service/product.service';
+import { RetailorDetailsService } from '../../../Service/retailor-details.service';
+import { Store, select } from '@ngrx/store';
+import { Observable } from 'rxjs';
+import { Product } from '../../Models/product';
+import { MatTableDataSource, MatTableModule } from '@angular/material/table';
 import { MaterialModule } from '../../material.module';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core';
 import { FormsModule } from '@angular/forms';
-import { HttpClient } from '@angular/common/http';
-import { Product } from '../../Models/product';
-import { ProductService } from '../../../Service/product.service';
-import {MatTableDataSource, MatTableModule} from '@angular/material/table';
-import { ActivatedRoute, ParamMap } from '@angular/router';
-import { RetailorDetailsService } from '../../../Service/retailor-details.service';
-import { Location } from '@angular/common';
-
-
+import { RouterModule } from '@angular/router';
+import { selectProducts } from '../../../Store/selector';
+import { addProducts, updatedProducts } from '../../../Store/actions';
 
 @Component({
   selector: 'app-add-dsr',
   standalone: true,
-  imports: [MaterialModule, MatDatepickerModule, MatNativeDateModule, FormsModule,MatTableModule],
+  imports: [
+    MaterialModule,
+    MatDatepickerModule,
+    MatNativeDateModule,
+    FormsModule,
+    MatTableModule,
+    RouterModule,
+  ],
   templateUrl: './add-dsr.component.html',
-  styleUrl: './add-dsr.component.scss'
+  styleUrls: ['./add-dsr.component.scss']
 })
-export class AddDsrComponent implements OnInit {
-  displayedColumns = ['productName', 'quantity', 'price', 'productTotal'];
-  dataSource = new MatTableDataSource<Product>([]);
-
-  selectedDate: Date = new Date();
-  retailers: any[] = [];
-  products: any[] = [];
-  areas: string[] = [];
-  distributorid: any;
-  ExecutiveId: any;
-  retailorNames: any;
-  selectedRetailer: any;
-  selectedArea: string | undefined;
-
-  constructor(
-    private http: HttpClient,
-    private productService: ProductService,
-    private activeRoute: ActivatedRoute,
-    private retailorService: RetailorDetailsService,
-    private location: Location
-  ) {}
-
-  ngOnInit(): void {
-    this.setupHardwareBackButton();
-    this.activeRoute.paramMap.subscribe((params: ParamMap) => {
-      this.distributorid = params.get('id');
-      this.ExecutiveId = params.get('Id');
-      this.getProducts();
-    });
-  }
-
-  applyFilter(filterValue: string) {
-    this.dataSource.filterPredicate = (data: any, filter: string) => {
-      return data.productName && data.productName.toLowerCase().includes(filter.trim().toLowerCase());
-    };
-    this.dataSource.filter = filterValue.trim().toLowerCase();
-  }
-  getProducts(): void {
-    this.productService.getProducts().subscribe({
-      next: (allProducts: Product[] | Product) => {
-        if (Array.isArray(allProducts)) {
-          this.productService.saveProducts(allProducts);
-          allProducts.forEach(x => x.quantity = '');
-          this.dataSource.data = allProducts;
+  export class AddDsrComponent implements OnInit {
+    displayedColumns = ['productName', 'quantity', 'price', 'productTotal'];
+    dataSource = new MatTableDataSource<Product>([]);
+    selectedDate: Date = new Date();
+    retailers: any[] = [];
+    areas: string[] = [];
+    distributorid: string | null = null;
+    ExecutiveId: string | null = null;
+    retailorNames: any;
+    selectedRetailer: any;
+    selectedArea: string | undefined;
+    retainedproducts: Observable<any>;
+  
+    constructor(
+      private productService: ProductService,
+      private activeRoute: ActivatedRoute,
+      private retailorService: RetailorDetailsService,
+      private location: Location,
+      private store: Store<Product[]>,
+      private router: Router
+    ) {}
+  
+    ngOnInit(): void {
+      this.setupHardwareBackButton();
+      this.activeRoute.paramMap.subscribe((params: ParamMap) => {
+        this.distributorid = params.get('id');
+        this.ExecutiveId = params.get('id');
+        this.retainedproducts = this.store.pipe(select(selectProducts));
+        console.log(this.retainedproducts);
+        this.getProducts();
+    
+        if (this.distributorid && this.distributorid.startsWith('NDIS')) {
+          this.getRetailorNamesByDistributor();
+        } else if (this.ExecutiveId && this.ExecutiveId.startsWith('NEXE')) {
+          this.getRetailorNamesByExecutive();
         }
-      },
-      error: (error) => {
+      });
+    }
+    
+  
+    applyFilter(filterValue: string): void {
+      this.dataSource.filterPredicate = (data: any, filter: string) => {
+        return data.productName && data.productName.toLowerCase().includes(filter.trim().toLowerCase());
+      };
+      this.dataSource.filter = filterValue.trim().toLowerCase();
+    }
+  
+    getProducts(): void {
+      this.productService.getProducts().subscribe({
+        next: (allProducts: Product[] | Product) => {
+          if (Array.isArray(allProducts)) {
+            allProducts.forEach(x => x.quantity = '');
+            this.dataSource.data = allProducts;
+            this.retainedproducts.subscribe((ngrxData: any[]) => {
+              this.dataSource.data.forEach((product) => {
+                const ngrxProduct = ngrxData.find((item) => item.id === product.id);
+                if (ngrxProduct) {
+                  product.quantity = ngrxProduct.quantity;
+                  product.price = ngrxProduct.price;
+                  product.subtotal = ngrxProduct.subtotal;
+                }
+              });
+            });
+          }
+        },
+        error: (error) => {
+          console.error(error);
+        }
+      });
+    }
+  
+    getRetailorNamesByDistributor(): void {
+      if (this.distributorid) {
+        this.retailorService.getRetailorNamesbydistributor(this.distributorid).subscribe({
+          next: (data) => {
+            this.retailorNames = data;
+            this.areas = Array.from(new Set(data.map((retailer: any) => retailer.area)));
+          },
+          error: (error) => {
+            console.error(error);
+          }
+        });
       }
-    });
-
-    this.retailorService.getRetailorNamesbydistributor(this.distributorid).subscribe({
-      next: (data) => {
-        this.retailorNames = data;
-        this.areas = Array.from(new Set(data.map((retailer: any) => retailer.area)));
-      },
-      error: (error) => {
+    }
+  
+    getRetailorNamesByExecutive(): void {
+      if (this.ExecutiveId) {
+        this.retailorService.getRetailorNamesbyexecutive(this.ExecutiveId).subscribe({
+          next: (data) => {
+            this.retailorNames = data;
+            this.areas = Array.from(new Set(data.map((retailer: any) => retailer.area)));
+          },
+          error: (error) => {
+            console.error(error);
+          }
+        });
       }
-    });
-  }
-
-  filterRetailers(): any[] {
-    if (!this.selectedArea || !this.retailorNames) {
-      return this.retailorNames;
-    } else {
-      return this.retailorNames.filter(retailer => retailer.area === this.selectedArea);
+    }
+  
+    filterRetailers(): any[] {
+      if (!this.selectedArea || !this.retailorNames) {
+        return this.retailorNames;
+      } else {
+        return this.retailorNames.filter(retailer => retailer.area === this.selectedArea);
+      }
+    }
+  
+    onAreaChange(selectedArea: string): void {
+      this.selectedArea = selectedArea;
+      if (!selectedArea) {
+        this.selectedRetailer = undefined;
+      }
+    }
+  
+    calculateSubtotal(product: any, newQuantity: string): void {
+      product.subtotal = product.price * parseFloat(newQuantity);
+    }
+  
+    calculatePricetotal(product: any, productPrice: string): void {
+      product.subtotal = parseFloat(productPrice) * product.quantity;
+    }
+  
+    calculateTotal(): number {
+      let total = 0;
+      this.dataSource.data.forEach(product => {
+        total += product.subtotal || 0;
+      });
+      return total;
+    }
+  
+    review(): void {
+      const selectedProducts = this.dataSource.data.filter(product => product.quantity != 0 && product.quantity != '' && product.quantity != undefined);
+      console.log(selectedProducts);
+      console.log(this.selectedRetailer);
+      this.productService.DisplaySelectedProducts(selectedProducts);
+      selectedProducts.forEach(products => {
+        try {
+          this.store.dispatch(addProducts({products}))
+        this.store.dispatch(updatedProducts({products: [products] }))
+          console.log("Inserted the values into store");
+        } catch (error) {
+          console.error(error);
+        }
+      });
+  
+      this.router.navigate(['/CreateDSR', this.distributorid, 'Review'], {
+        queryParams: {
+          products: JSON.stringify(selectedProducts),
+          retailer: JSON.stringify(this.selectedRetailer),
+          area: this.selectedArea
+        }
+      });
+    }
+  
+    setupHardwareBackButton(): void {
+      document.addEventListener('backbutton', () => {
+        this.handleHardwareBackButton();
+      });
+    }
+  
+    handleHardwareBackButton(): void {
+      this.location.back();
     }
   }
-
-  onAreaChange(selectedArea: string): void {
-    this.selectedArea = selectedArea;
-    if (!selectedArea) {
-      this.selectedRetailer = undefined; 
-    }
-  }
-
-  calculateSubtotal(product: any, newQuantity: string) {
-    product.subtotal = product.price * parseFloat(newQuantity);
-  }
-
-  calculatePricetotal(product: any, productprice: string) {
-    product.subtotal = parseFloat(productprice) * product.quantity;
-  }
-
-  calculateTotal(): number {
-    let total = 0;
-    this.dataSource.data.forEach(product => {
-      total += product.subtotal || 0;
-    });
-    return total;
-  }
-
-  review() {
-    const selectedProducts = this.dataSource.data.filter(product => product.quantity != 0 && product.quantity != '' && product.quantity != undefined);
-    console.log(selectedProducts);
-  }
-
-  setupHardwareBackButton(): void {
-    document.addEventListener('backbutton', () => {
-      this.handleHardwareBackButton();
-    });
-  }
-
-  handleHardwareBackButton(): void {
-    this.location.back();
-  }
-}
+  
