@@ -29,8 +29,6 @@ export class AutherizationService {
   getLoggedinUserName()
   {
     return this.loggedinUserName;
-    
-    //console.log(this.loggedinUserRole);
   }
   
 }
