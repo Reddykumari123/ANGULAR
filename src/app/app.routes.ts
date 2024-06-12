@@ -10,6 +10,7 @@ import { ProductsComponent } from './Components/products/products.component';
 import { NotificationsComponent } from './pages/notifications/notifications.component';
 import { ReportsComponent } from './pages/reports/reports.component';
 import { ReviewComponent } from './pages/review/review.component';
+import { EditDsrComponent } from './pages/edit-dsr/edit-dsr.component';
 
 
 
@@ -34,6 +35,7 @@ export const routes: Routes =
     {path:'notifications',component:NotificationsComponent},
     {path:'Reports',component:ReportsComponent},
     { path: 'CreateDSR/:id/Review', component: ReviewComponent },
+    {path:'Edit',component:EditDsrComponent}
 
  
 

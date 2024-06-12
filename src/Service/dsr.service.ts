@@ -14,7 +14,7 @@ export class DsrService {
 ApiUrl="https://localhost:44335/api/Dsr";
 
 
-  constructor(private httpclient:HttpClient) { }
+constructor(private httpclient:HttpClient) { }
  Postproducts(prod:ProductDetails):Observable<ProductDetails>
  {
   return this.httpclient.post<ProductDetails>(this.ApiUrl,prod);
@@ -35,6 +35,14 @@ ApiUrl="https://localhost:44335/api/Dsr";
  {
   return this.SelectedRetailer;
  }
+ deleteDsr(id: string): Observable<any> {
+  const url = `${this.ApiUrl}/${id}`;
+  return this.httpclient.delete(url);
+}
+editProduct(prod: ProductDetails): Observable<ProductDetails> {
+  return this.httpclient.put<ProductDetails>(`${this.ApiUrl}/${prod.id}`, prod);
+}
+
 
 }
 
