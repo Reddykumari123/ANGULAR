@@ -14,7 +14,6 @@ export class RetailorDetailsService {
   assignedRetailorsbydistirbutorUrl = 'https://localhost:44335/api/AssignRetailorToDistributor/Details';
   assignedRetailorsbyexecutiveUrl = 'https://localhost:44335/api/Dsr/AssignedDetails';
 
-  deleteproduct:'https://localhost:44335/api/Dsr';
 
   private infoButtonClickSubject = new BehaviorSubject<RetailorDetails>(null);
   infoButtonClick = this.infoButtonClickSubject.asObservable();
@@ -24,18 +23,11 @@ export class RetailorDetailsService {
   }
 
   constructor(private httpClient: HttpClient) { }
-  deleteDsr(id: string): Observable<any> {
-    const url = `${this.deleteproduct}/${id}`;
-    return this.httpClient.delete(url);
-  }
 
-
-
-
-  
 
   getRetailorsListByDistributorId(id: any): Observable<RetailorDetails> {
     return this.httpClient.get<RetailorDetails>(`${this.apiUrl}${id}`);
+    
   }
 
   getRetailorsListByExecutiveId(executiveId: any): Observable<RetailorDetails[]> {

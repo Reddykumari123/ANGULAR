@@ -4,15 +4,20 @@ import { ReportsService } from '../../../Service/reports.service';
 import { MaterialModule } from '../../material.module';
 import { FormsModule } from '@angular/forms';
 import { Areas } from '../../Models/areas';
+import { ViewChild } from '@angular/core';
+import { MatSelect } from '@angular/material/select';
+
 
 @Component({
   selector: 'app-reports',
   standalone: true,
   imports: [MaterialModule, FormsModule],
   templateUrl: './reports.component.html',
-  styleUrl: './reports.component.scss'
+  styleUrls: ['./reports.component.scss'] // Use styleUrls instead of styleUrl
 })
 export class ReportsComponent implements OnInit {
+  @ViewChild(MatSelect) select: MatSelect;
+
   salesReports: Reports[] = [];
   areas: Areas[] = [];
   area: string = 'arn28';
@@ -39,13 +44,26 @@ export class ReportsComponent implements OnInit {
     this.salesReportService.getAreas()
       .subscribe((data: Areas[]) => {
         this.areas = data;
+        this.sortAreas(); 
       });
+  }
+
+  sortAreas() {
+    this.areas.sort((a, b) => a.areaName.localeCompare(b.areaName));
   }
 
   get filteredAreas(): Areas[] {
     return this.areas.filter(area =>
-      area.areaName.toLowerCase().includes(this.searchText.toLowerCase())
+      this.isMatch(area.areaName.toLowerCase(), this.searchText.toLowerCase())
     );
+  }
+
+  isMatch(areaName: string, searchText: string): boolean {
+    return areaName.replace(/\s/g, '').includes(searchText.replace(/\s/g, ''));
+  }
+
+  isHighlighted(areaName: string): boolean {
+    return this.isMatch(areaName, this.searchText);
   }
 
   updateSelectedAreaName() {
@@ -58,13 +76,12 @@ export class ReportsComponent implements OnInit {
     this.updateSelectedAreaName();
   }
 
-
-
-  filterAreas(event: Event): void {
-    const filterValue = (event.target as HTMLInputElement).value;
-    this.areas = this.areas.filter(area =>
-      area.areaName.toLowerCase().includes(filterValue.toLowerCase())
-    );
+  onSearchChange(event: any) {
+    this.searchText = event.target.value;
   }
-
+  openDropdown() {
+    this.select.open();
+  }
+  
 }
+
