@@ -16,32 +16,25 @@ export class ProductService {
   ApiUrl = "https://localhost:44335/api/Product";
 
   constructor(private httpclient: HttpClient, private rxdbService: RXDBService) { 
-    this.initCollections();
+    
   }
 
   getProducts(): Observable<Product[]> {
     return this.httpclient.get<Product[]>(this.ApiUrl);
   }
   
-  private async initCollections() {
-    try {
-      const db = await this.rxdbService.ensureIsDatabaseCreated();
-      this.allProductsCollection = (await this.rxdbService.db.addCollections({
-        Products: {
-          schema: allProducts,
-        }
-      })).Products;
-    } catch (error) {
-      console.error('Error initializing collections:', error);
-    }
-  }
 
-  async saveProducts(data: Product[]) {
+  async saveProducts(pData: Product[]) {
     try {
-      await this.allProductsCollection.insert(data);
+      
+      for( const d of pData){
+        await this.rxdbService.productCollection.insert(d);
+      }
     } catch (error) {
-      console.error('Error saving products:', error);
+      console.error(`PRODUCT INSERT ERROR ### ${error.message}`)
     }
+    
+    
   }
 
   private details = new BehaviorSubject<Product[]>(null); 
