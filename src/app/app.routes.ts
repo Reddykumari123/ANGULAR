@@ -38,15 +38,11 @@ export const routes: Routes =
     {path:'notifications',component:NotificationsComponent},
     {path:'Reports',component:ReportsComponent},
     { path: 'CreateDSR/:id/Review', component: ReviewComponent },
-<<<<<<< Updated upstream
     {path:'Productview',component:ProductViewComponent},
 
     {path:'Edit',component:EditDsrComponent},
-    // {path:'Productview',component:ProductViewComponent},
-=======
     {path:'Edit',component:EditDsrComponent},
     { path:'Edit/:id/Orderform', component:OrderformEditComponent},
->>>>>>> Stashed changes
 
 
  
