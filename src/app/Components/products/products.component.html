@@ -1,5 +1,5 @@
 <mat-form-field class="filter">
-  <mat-label>Filter</mat-label>
+  <mat-label>Search</mat-label>
   <input matInput placeholder="Product Name" #input (keyup)="applyFilter(input.value)">
 </mat-form-field>
 <div *ngIf="loading" class="spinner-overlay">
