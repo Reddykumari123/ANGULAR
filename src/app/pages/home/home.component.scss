@@ -25,7 +25,6 @@
 max-width: 400px;
 margin: auto;
 text-align: center;
-// background-image: url("/assets/Elaichi.jpg"); 
 background-size: cover; 
 background-position: center; 
 background-repeat: no-repeat; 
@@ -66,26 +65,12 @@ height: 350px;
   background-size:cover;
   background-position: center; 
   width: 410px;
-  height: 320px; /* Responsive width */
+  height: 320px; 
   margin: auto;
   margin-top: 20px;
   margin-left: -4px;
-  padding: 20px; /* Added padding */
-  background-color: whitesmoke(240, 233, 233, 0.8); /* Semi-transparent background */
-  border-radius: 15px; /* Rounded corners */
-  box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.2); /* Added shadow */
+  padding: 20px; 
+  background-color: whitesmoke(240, 233, 233, 0.8); 
+  border-radius: 15px; 
+  box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.2); 
 }
-
-// .registration-container {
-//   width: 400px;
-//   height: 375px;
-//   margin: auto;
-
-// }
-// .container {
-//   display: flex;
-//   justify-content: center;
-//   align-items: center;
-//   margin-left:50px;
-// }
-
