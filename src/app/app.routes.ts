@@ -26,6 +26,7 @@ export const routes: Routes =
         children: [
           { path: '', component: ContentComponent },
           { path: 'CreateDSR/:id', component: AddDsrComponent }, 
+          
         ]
       },
       

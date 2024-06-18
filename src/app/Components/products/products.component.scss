@@ -1,32 +1,43 @@
 .products-container {
     display: flex;
+    // to arrange its child elements in a row.
     flex-wrap: wrap;
+    // ensures that items wrap to the next line when the container width is insufficient.
+    justify-content: center;
   }
-  
+  // Represents a single product card.
   .product-card {
     width: 150px; 
+    height: 220px; 
     margin: 10px;
     border: 1px solid #ccc;
     border-radius: 5px;
     overflow: hidden;
-    margin-top:-10px;
-    margin-right:17px;
-    margin-bottom:20px;
+    margin-top:-15px;
+    margin-right:10px;
+    margin-bottom:30px;
+    background-color: whitesmoke;
   }
-  
+  // Applies to the product image within each card.
   .product-image {
-    width: 100px;;
+    width: 100px;
     height:100px;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    padding-top: 15px;
   }
-  
-  .product-details {
-    padding: 10px;
+  // styling the product details (e.g., name, price) within the card.
+  .product-details { 
+    padding: 30px;
     font-weight: bold;
+    font-family: "Roboto", sans-serif;
   }
+  // class to make text red.
   .red{
-    color:red;
+    color:black;
   }
-  
+  // Represents a header image (e.g., logo) with a background image Positioned at the top-left corner 
   .header-image {
     background-image: url("/assets/logo1.jpg");
     background-size: contain; 
