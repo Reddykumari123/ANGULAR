@@ -1,110 +1,155 @@
-
 .example-full-width {
-  margin-top:50px; 
-  margin-left:60px;
-  margin-right: 50px;
+  margin-top: 3vw;
+  margin-left: 4vw;
+  margin-right: 4vw;
 }
+
+.primary-button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 31vw;
+  height: 6vh;
+  text-align: center;
+  margin: 1vh auto;
+  padding: 0 4vw;
+  border-radius: 20px;
+  font-size: medium;
+  font-family: "Capriola", sans-serif;
+  font-weight: bold;
+  background-color: #fbce07;
+  border: none;
+  outline: none;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.primary-button:hover {
+  background-color: #e0ac00;
+  transform: scale(1.05);
+}
+
+.primary-button mat-icon {
+  margin-right: 0.5em;
+}
+
+@media screen and (max-width: 768px) {
   .primary-button {
-    margin-left:20px;
-    margin-right:50px;
-    margin-top:-10px;
-    width:350px;
-    height:40px;
+    width: 60vw;
+    height: 40px;
+    margin: 1vh auto;
+    padding: 0 10px;
     border: 2px solid black;
-    padding: 0 50px;
     border-radius: 40px;
     font-size: large;
-    font-family:"Capriola";
-    font-weight: bold;
-    background-color: #fbce07 !important;
+    background-color: #fbce07;
   }
+}
 
-  
-  .retailer-details {
-    display: flex;
-    align-items: center;
-    margin-top: 15px;
-    margin-left: 20px;
+@media screen and (max-width: 480px) {
+  .primary-button {
+    width: 80vw;
+    font-size: small;
   }
-  
-  .account-circle-container {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+}
 
-  }
-  
-  .retailer-name {
-    margin-top: 5px; 
-    font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
-    font-weight: bolder;
+.retailer-details {
+  display: flex;
+  align-items: center;
+  margin-top: 1vh;
+  margin-left: 2vw;
+}
 
-  }
-  
-  .retailer-address {
-    margin-left: 20px; 
-    margin-top:1px;
-  font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
-  }
-  
-  .retailer-label {
-    display: block;
-    margin-bottom: 5px;
-  }
-  
-  .center-container {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 50vh; 
-  }
-  
-  .container {
-    display: flex;
-    align-items: center;
-  }
+.account-circle-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.retailer-name {
+  margin-top: 3px;
+  font-family: 'Trebuchet MS', sans-serif;
+  font-weight: bold;
+}
+
+.retailer-address {
+  display: flex;
+  flex-direction: column;
+  margin-left: 70px;
+  margin-top: 0px;
+  margin-bottom: 10px;
+  font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+  align-items: flex-start;
+  justify-content: left;
+}
+
+.retailer-label {
+  display: block;
+  margin-bottom: 5px;
+}
+
+.center-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 50vh;
+}
+
+.container {
+  display: flex;
+  align-items: center;
+}
 
 .retailer-box {
-  position: relative;
-  width:350px;
-  height:120px;
-  margin-top: 20px;
-  margin-left:15px;
+  width: 90%;
+  max-width: 400px;
+  height: auto;
+  margin: 2vh auto;
   font-weight: bold;
   border: 1px solid #fbce07;
+  padding: 10px;
+  border-radius: 10px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  background-color: #ffffff;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  text-align: left;
 }
 
-.searchfilter{
-  width:100%;
+.searchfilter {
+  width: 100%;
   transform: scale(0.85);
-margin-top:-20px;
+  margin-top: -2vh;
 }
-.Datepicker{
-  width:100%;
+
+.Datepicker {
+  width: 100%;
   transform: scale(0.85);
+  margin-top: -2vh;
 }
+
 .no-data-found {
-  color: red; 
-  font-size:25px; 
-  margin-top:60px;
-  margin-left:120px;
+  color: red;
+  font-size: 2vw;
+  margin-top: 5vh;
+  text-align: center;
 }
+
 .count {
   color: black;
   font-weight: bold;
-  margin-top: 10px;
-  margin-left:10px;
-  font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+  margin-top: 1vh;
+  margin-left: 1vw;
+  font-family: 'Lucida Sans', sans-serif;
 }
 
 .red-text {
   color: red;
   font-weight: bold;
-  font-size: larger;
-}
-.display{
-  background-color:transparent;
-  border: none; 
-  outline: none;
+  font-size: medium;
 }
 
+.display {
+  background-color: transparent;
+  border: none;
+  outline: none;
+}

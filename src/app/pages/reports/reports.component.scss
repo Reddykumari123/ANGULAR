@@ -1,41 +1,130 @@
-.sales-reports {
-    list-style-type: none;
-    padding: 0;
-  }
-  
-  .sales-report-item {
-    border: 1px solid #ccc;
-    margin-bottom: 10px;
-    padding: 10px;
-    border-radius: 5px;
-  }
-  
-  .report-details {
-    font-size: 16px;
-  }
-  
-  .report-details p {
-    margin: 5px 0;
-  }
-  
-  .report-details strong {
-    font-weight: bold;
-  }
-  .searchfilter{
-    width:100%;
-    transform: scale(0.85);
-  }
-  .heading{
-    margin-left:130px;
-    color: red;
-    font-weight: bold;
-  }
- .area{
-  transform: scale(0.85);
-  width:300px;
-  height:100px;
- }
- .red-letter {
-  color: red;
+
+body {
+  font-family: 'Arial', sans-serif;
+  background-color: #f9f9f9;
+  margin: 0;
+  padding: 20px;
 }
+
+h1.heading {
+  text-align: center;
+  color: #333;
+  margin-bottom: 20px;
+}
+
+
+mat-form-field.area {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 0 auto;
+  width: 100%;
+  max-width: 600px;
+  margin-bottom: 20px;
+}
+
+mat-label {
+  font-weight: bold;
+}
+
+mat-select {
+  width: 100%;
+}
+
+mat-option span {
+  font-weight: bold;
+}
+
+mat-option span:last-child {
+  font-weight: normal;
+}
+
+
+ul.sales-reports {
+  list-style-type: none;
+  padding: 0;
+}
+
+li.sales-report-item {
+  background-color: #fff;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  margin-bottom: 20px;
+  padding: 20px;
+  transition: transform 0.3s ease-in-out;
+}
+
+li.sales-report-item:hover {
+  transform: scale(1.02);
+}
+
+.report-details p {
+  margin: 10px 0;
+}
+
+.report-details p strong {
+  color: #007BFF;
+}
+
+
+@media (max-width: 768px) {
+  li.sales-report-item {
+    padding: 15px;
+  }
+}
+
+@media (max-width: 480px) {
+  mat-form-field.area {
+    width: 90%;
+  }
+
+  li.sales-report-item {
+    padding: 10px;
+  }
+
+  .report-details p {
+    margin: 8px 0;
+  }
+}
+
+// .sales-reports {
+//     list-style-type: none;
+//     padding: 0;
+//   }
+  
+//   .sales-report-item {
+//     border: 1px solid #ccc;
+//     margin-bottom: 10px;
+//     padding: 10px;
+//     border-radius: 5px;
+//   }
+  
+//   .report-details {
+//     font-size: 16px;
+//   }
+  
+//   .report-details p {
+//     margin: 5px 0;
+//   }
+  
+//   .report-details strong {
+//     font-weight: bold;
+//   }
+//   .searchfilter{
+//     width:100%;
+//     transform: scale(0.85);
+//   }
+//   .heading{
+//     margin-left:130px;
+//     color: red;
+//     font-weight: bold;
+//   }
+//  .area{
+//   transform: scale(0.85);
+//   width:300px;
+//   height:100px;
+//  }
+//  .red-letter {
+//   color: red;
+// }
 
