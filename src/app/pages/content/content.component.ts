@@ -110,24 +110,27 @@ export class ContentComponent implements OnInit {
   }
 
   applyFilterByArea(area: string) {
+    area = area.trim().toLowerCase();
     if (area) {
-      this.filteredRetailorListByArea = this.retailorList.filter(retailor =>
-        retailor.area && retailor.area.toLowerCase().includes(area.toLowerCase())
-      );
+        this.filteredRetailorListByArea = this.retailorList.filter(retailor =>
+            retailor.area .toLowerCase().includes(area)
+        );
     } else {
-      this.filteredRetailorListByArea = this.retailorList.slice();
+        this.filteredRetailorListByArea = this.retailorList.slice();
     }
     this.applyCombinedFilter();
-  }
+}
 
-  applyCombinedFilter() {
+applyCombinedFilter() {
     if (this.filteredRetailorListByArea.length > 0) {
-      this.filteredRetailorList = this.filteredRetailorList.filter(retailor =>
-        this.filteredRetailorListByArea.includes(retailor)
-      );
+        this.filteredRetailorList = this.retailorList.filter(retailor =>
+            this.filteredRetailorListByArea.includes(retailor)
+        );
+    } else {
+        this.filteredRetailorList = [];
     }
     this.noDataFound = this.filteredRetailorList.length === 0;
-  }
+}
 
   onDateChanged(event: MatDatepickerInputEvent<Date>) {
     const selectedDateStr = this.datePipe.transform(event.value, 'MM-dd-yyyy');
