@@ -1,10 +1,10 @@
 .footer {
   text-align: center;
-  margin-top: 40px; /* Increase margin to move footer down */
+  margin-top: 40px; 
   padding-bottom: 20px;
   justify-content: center;
   margin-top: 30px;
-  margin-left: auto; /* Add padding to create space between content and footer */
+  margin-left: auto; 
 }
 
 .copyright-label {
@@ -12,7 +12,7 @@
   color: #000; 
 }
 
-/* Add hover effect */
+
 .copyright-input {
   border: 2px solid green; 
   background-color:rgb(243, 16, 16);
@@ -24,25 +24,15 @@
   width: 400px;
   font-size: 16px; 
   border-radius: 8px; 
-  transition: background-color 0.3s, transform 0.3s; /* Transition for smoother effect */
+  transition: background-color 0.3s, transform 0.3s; 
 }
 
-/* Hover effect */
 .copyright-input:hover {
-  background-color: #0c7b00; /* Change background color on hover */
-  transform: scale(1.05); /* Slight scale increase on hover */
+  background-color: #0c7b00; 
+  transform: scale(1.05); 
 }
 
-// .footer {
-//     text-align: center;
-//     margin-top: 20px;
-   
-//   }
-  
-//   .copyright-label {
-//     font-weight: bold;
-//     color: #000; 
-//   }
+
   
   .copyright-input {
     border: 2px solid green; 
