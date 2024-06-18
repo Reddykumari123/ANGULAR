@@ -19,7 +19,7 @@ import { MatDatepickerModule } from '@angular/material/datepicker';
 import { CdkMenu, CdkMenuItem, CdkMenuTrigger } from '@angular/cdk/menu';
 import { MatToolbar } from '@angular/material/toolbar';
 import { DatePipe } from '@angular/common';
-
+import {MatBadgeModule} from '@angular/material/badge';
 
 import { MatSidenav } from '@angular/material/sidenav';
 
@@ -46,7 +46,8 @@ import { MatSidenav } from '@angular/material/sidenav';
     CdkMenuTrigger,
     MatToolbar,
     MatSidenav ,
-    DatePipe,   
+    DatePipe, 
+      
 
    ],
   exports: [
@@ -68,7 +69,8 @@ import { MatSidenav } from '@angular/material/sidenav';
     CdkMenuTrigger,
     MatToolbar,
     MatSidenav,
-    DatePipe
+    DatePipe,
+    MatBadgeModule
   ]
 })
 export class MaterialModule { }
