@@ -12,6 +12,7 @@ import { ReportsComponent } from './pages/reports/reports.component';
 import { ReviewComponent } from './pages/review/review.component';
 import { ProductViewComponent } from './pages/product-view/product-view.component';
 import { EditDsrComponent } from './pages/edit-dsr/edit-dsr.component';
+import { OrderformEditComponent } from './pages/orderform-edit/orderform-edit.component';
 
 
 
@@ -37,10 +38,15 @@ export const routes: Routes =
     {path:'notifications',component:NotificationsComponent},
     {path:'Reports',component:ReportsComponent},
     { path: 'CreateDSR/:id/Review', component: ReviewComponent },
+<<<<<<< Updated upstream
     {path:'Productview',component:ProductViewComponent},
 
     {path:'Edit',component:EditDsrComponent},
     // {path:'Productview',component:ProductViewComponent},
+=======
+    {path:'Edit',component:EditDsrComponent},
+    { path:'Edit/:id/Orderform', component:OrderformEditComponent},
+>>>>>>> Stashed changes
 
 
  

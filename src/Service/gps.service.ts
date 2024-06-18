@@ -9,7 +9,7 @@ import { Position } from '../app/Models/position';
 export class GpsService {
   private apiUrl = 'https://localhost:44335/api/ExecutiveGPS/CreateOrUpdateExe';
   private executiveId="NEXE42314"; 
-
+ 
   constructor(private http: HttpClient) { }
 
   postPosition(executiveId: string, latitude: string, longitude: string): Observable<any> {

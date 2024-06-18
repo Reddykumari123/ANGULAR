@@ -95,6 +95,7 @@ export class RetailorDetailsComponent implements OnInit, OnDestroy {
     }
     this.showDeletePopup = false;
   }
+  
 
   cancelDelete(): void {
     this.showDeletePopup = false;

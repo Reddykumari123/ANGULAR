@@ -132,6 +132,7 @@ export class AddDsrComponent implements OnInit {
         }
       });
     }
+<<<<<<< Updated upstream
   }
 
   getRetailorNamesByExecutive(): void {
@@ -142,6 +143,81 @@ export class AddDsrComponent implements OnInit {
           this.areas = Array.from(new Set(data.map((retailer: any) => retailer.area)));
         },
         error: (error) => {
+=======
+  
+    getRetailorNamesByDistributor(): void {
+      if (this.distributorid) {
+        this.retailorService.getRetailorNamesbydistributor(this.distributorid).subscribe({
+          next: (data) => {
+            this.retailorNames = data;
+            this.areas = Array.from(new Set(data.map((retailer: any) => retailer.area)));
+          },
+          error: (error) => {
+            console.error(error);
+          }
+        });
+      }
+    }
+  
+    getRetailorNamesByExecutive(): void {
+      if (this.ExecutiveId) {
+        this.retailorService.getRetailorNamesbyexecutive(this.ExecutiveId).subscribe({
+          next: (data) => {
+            console.log('Retailor data by executive:', data); 
+            this.retailorNames = data;
+            this.areas = Array.from(new Set(data.map((retailer: any) => retailer.area)));
+            console.log('Areas:', this.areas); 
+          },
+          error: (error) => {
+            console.error(error);
+          }
+        });
+      }
+    }
+  
+    filterRetailers(): any[] {
+      if (!this.selectedArea || !this.retailorNames) {
+        return this.retailorNames;
+      } else {
+        return this.retailorNames.filter(retailer => retailer.area === this.selectedArea);
+      }
+    }
+  
+    onAreaChange(selectedArea: string): void {
+      this.selectedArea = selectedArea;
+      if (!selectedArea) {
+        this.selectedRetailer = undefined;
+      }
+    }
+  
+    calculateSubtotal(product: any, newQuantity: string): void {
+      product.subtotal = product.price * parseFloat(newQuantity);
+    }
+  
+    calculatePricetotal(product: any, productPrice: string): void {
+      product.subtotal = parseFloat(productPrice) * product.quantity;
+    }
+  
+    calculateTotal(): number {
+      let total = 0;
+      this.dataSource.data.forEach(product => {
+        total += product.subtotal || 0;
+      });
+      return total;
+    }
+  
+    review(): void {
+      const selectedProducts = this.dataSource.data.filter(product => product.quantity != 0 && product.quantity != '' && product.quantity != undefined);
+      console.log(selectedProducts);
+      console.log(this.selectedRetailer);
+      this.productService.DisplaySelectedProducts(selectedProducts);
+      selectedProducts.forEach(products => {
+        try {
+          this.store.dispatch(addProducts({products}))
+        this.store.dispatch(updatedProducts({products: [products] }))
+          console.log("Inserted the values into store");
+        } catch (error) {
+>>>>>>> Stashed changes
           console.error(error);
         }
       });

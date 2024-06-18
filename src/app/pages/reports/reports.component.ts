@@ -13,7 +13,7 @@ import { MatSelect } from '@angular/material/select';
   standalone: true,
   imports: [MaterialModule, FormsModule],
   templateUrl: './reports.component.html',
-  styleUrls: ['./reports.component.scss'] // Use styleUrls instead of styleUrl
+  styleUrls: ['./reports.component.scss'] 
 })
 export class ReportsComponent implements OnInit {
   @ViewChild(MatSelect) select: MatSelect;
