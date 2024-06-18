@@ -2,7 +2,7 @@
     margin-right: 10px; 
   }
   .btn-success-button {
-    background-color: #fbce07;
+    background-color: rgba(251, 206, 7, 0);
     border-color: black;
     color: black;
     padding: 10px 20px;
@@ -12,32 +12,33 @@
     display: block; 
     font-weight: bold;
     margin-bottom:80px;
-    margin-top: 150px;
+    margin-top: 130px;
     margin-left:40px;
-  
+    transition: background-color 0.3s, border 0.3s;
   }
   .btn-success-button:hover {
-    background-color: white;
-    border: 3px solid red;
+    background-color: rgb(255, 255, 255);
+    border: 3px solid rgb(255, 4, 4);
     color: black;
   }
 .container {
-max-width: 430px;
+max-width: 400px;
 margin: auto;
 text-align: center;
-background-image: url("/assets/Banner.jpeg"); 
+// background-image: url("/assets/Elaichi.jpg"); 
 background-size: cover; 
 background-position: center; 
 background-repeat: no-repeat; 
-margin-top: 150px;
+margin-top: 115px;
 padding-top: 1em;
 height: 350px;
 }
+
 .btn-group button {
   margin-right: 10px; 
 }
 .btn-Warning-button {
-  background-color:  #fbce07;
+  background-color: rgba(251, 206, 7, 0);
   border-color: black;
   color: black;
   padding: 10px 20px;
@@ -50,23 +51,41 @@ height: 350px;
   margin-top:-122px;
   margin-left:190px;
   margin-right:50px;
+  transition: background-color 0.3s, border 0.3s;
 }
 
 
 .btn-Warning-button:hover {
-  background-color: white;
+  background-color: rgb(255, 255, 255);
   border: 3px solid red;
   color: black;
 }
-.container {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-margin-left:50px;
-}
 
 .registration-container {
-  width: 400px;
-  height: 400px;
-
+  background-image: url("/assets/Mirchi.jpg");
+  background-size:cover;
+  background-position: center; 
+  width: 410px;
+  height: 320px; /* Responsive width */
+  margin: auto;
+  margin-top: 20px;
+  margin-left: -4px;
+  padding: 20px; /* Added padding */
+  background-color: whitesmoke(240, 233, 233, 0.8); /* Semi-transparent background */
+  border-radius: 15px; /* Rounded corners */
+  box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.2); /* Added shadow */
 }
+
+// .registration-container {
+//   width: 400px;
+//   height: 375px;
+//   margin: auto;
+
+// }
+// .container {
+//   display: flex;
+//   justify-content: center;
+//   align-items: center;
+//   margin-left:50px;
+// }
+
