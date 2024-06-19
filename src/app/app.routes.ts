@@ -10,7 +10,9 @@ import { ProductsComponent } from './Components/products/products.component';
 import { NotificationsComponent } from './pages/notifications/notifications.component';
 import { ReportsComponent } from './pages/reports/reports.component';
 import { ReviewComponent } from './pages/review/review.component';
+import { ProductViewComponent } from './pages/product-view/product-view.component';
 import { EditDsrComponent } from './pages/edit-dsr/edit-dsr.component';
+import { OrderformEditComponent } from './pages/orderform-edit/orderform-edit.component';
 
 
 
@@ -25,8 +27,8 @@ export const routes: Routes =
         component: MenuComponent,
         children: [
           { path: '', component: ContentComponent },
-          { path: 'CreateDSR/:id', component: AddDsrComponent }, 
-          
+          { path: 'CreateDSR/:id', component: AddDsrComponent },
+          {path:'Productview',component:ProductViewComponent}, 
         ]
       },
       
@@ -36,7 +38,11 @@ export const routes: Routes =
     {path:'notifications',component:NotificationsComponent},
     {path:'Reports',component:ReportsComponent},
     { path: 'CreateDSR/:id/Review', component: ReviewComponent },
-    {path:'Edit',component:EditDsrComponent}
+
+    {path:'Edit',component:EditDsrComponent},
+
+    { path:'Edit/:id/Orderform', component:OrderformEditComponent},
+
 
  
 

@@ -1,16 +1,18 @@
-  
-
 .header-image {
   max-width: 210px;
   height: 60px;
-  margin: auto;
+  margin: auto; 
+  justify-content: center;
   text-align: center;
   background-image: url("/assets/logo1.jpg");
-  background-size: cover; 
-  background-position: left; 
-  margin-bottom:-130px; 
+  background-size: cover;
+  background-position: left;
+  margin-bottom: -100px;
   margin-top: 30px;
+ 
 }
+  
+
 
 
 

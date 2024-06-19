@@ -108,15 +108,26 @@ export class ReviewComponent implements OnInit {
         product: data.id,
         price: data.price,
         quantity: data.quantity,
-        dsr:data.dsr
+        dsr: data.dsr
       });
     });
 
-    this.UpdatedProducts.distributor = this.id;
-    this.UpdatedProducts.executive = this.exeId;
-    this.UpdatedProducts.retailor = this.selectedRetailer.id;
-    this.UpdatedProducts.orderBy = this.id;
-    this.UpdatedProducts.createdDate = new Date();
+    if (this.id.startsWith('NDIS')) {
+    
+      this.UpdatedProducts.distributor = this.id;
+      this.UpdatedProducts.executive = this.exeId;
+      this.UpdatedProducts.retailor = this.selectedRetailer.id;
+      this.UpdatedProducts.orderBy = this.id;
+      this.UpdatedProducts.createdDate = new Date();
+    } else if (this.id.startsWith('NEXE')) {
+      
+      this.UpdatedProducts.executive = this.id;
+      this.UpdatedProducts.distributor = this.selectedRetailer.distributor;
+      this.UpdatedProducts.retailor = this.selectedRetailer.id;
+      this.UpdatedProducts.orderBy = this.id;
+      this.UpdatedProducts.createdDate = new Date();
+    }
+
     this.UpdatedProducts.totalAmount = this.calculatetotal();
 
     console.log('Final payload to be sent:', this.UpdatedProducts);
@@ -139,3 +150,7 @@ export class ReviewComponent implements OnInit {
     this.dsrService.Postproducts(this.UpdatedProducts).subscribe(observer);
   }
 }
+<<<<<<< Updated upstream
+=======
+
+>>>>>>> Stashed changes

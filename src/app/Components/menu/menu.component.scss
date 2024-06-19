@@ -1,3 +1,4 @@
+
 .custom-border {
   border-bottom: 2px solid #fbce07;
   background-color: white;
@@ -72,6 +73,7 @@
     border: none;
     cursor: pointer;
     padding: 0;
+    margin-right: -10%;
   }
   
   .logout-popup {
@@ -84,22 +86,25 @@
     display: flex;
     justify-content: center;
     align-items: center;
+    z-index: 1000;
   }
   
   .popup-content {
-    background-color: white;
-    padding: 40px;
+    background-color: whitesmoke;
+    padding: 30px;
     border-radius: 10px;
     text-align: center;
+    margin-bottom: -8%;
+    z-index: 1001;
   }
   
   .buttons button {
     margin: 0 10px;
-    border: 2px solid black; /* Added black border */
+    border: 2px solid black; 
     border-radius: 5px;
-    font-weight: bold; /* Bold text */
-    padding: 10px 20px; /* Increased padding */
-    font-size: 18px; /* Increased font size */
+    font-weight: bold; 
+    padding: 10px 20px; 
+    font-size: 18px; 
   }
   
   .buttons .yes-button {

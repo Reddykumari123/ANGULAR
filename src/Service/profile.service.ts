@@ -8,7 +8,7 @@ import { BehaviorSubject, Observable } from 'rxjs';
 export class ProfileService {
   private userDetailsSubject = new BehaviorSubject<UserDetails>(this.getUserDetailsFromSessionStorage());
 
-  userDetails$ = this.userDetailsSubject.asObservable();
+  userDetails$ = this.userDetailsSubject.asObservable();0
 
   constructor() { }
 
@@ -25,7 +25,7 @@ export class ProfileService {
     sessionStorage.setItem('userDetails', JSON.stringify(userDetails));
   }
 
-  public getUserDetailsFromSessionStorage(): UserDetails | null {
+  public getUserDetailsFromSessionStorage(): UserDetails{
     const userDetailsString = sessionStorage.getItem('userDetails');
     return userDetailsString ? JSON.parse(userDetailsString) : null;
   }

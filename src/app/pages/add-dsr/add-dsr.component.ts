@@ -134,19 +134,25 @@ export class AddDsrComponent implements OnInit {
     }
   }
 
-  getRetailorNamesByExecutive(): void {
-    if (this.ExecutiveId) {
-      this.retailorService.getRetailorNamesbyexecutive(this.ExecutiveId).subscribe({
-        next: (data) => {
-          this.retailorNames = data;
-          this.areas = Array.from(new Set(data.map((retailer: any) => retailer.area)));
-        },
-        error: (error) => {
-          console.error(error);
-        }
-      });
+
+
+    getRetailorNamesByExecutive(): void {
+      if (this.ExecutiveId) {
+        this.retailorService.getRetailorNamesbyexecutive(this.ExecutiveId).subscribe({
+          next: (data) => {
+            console.log('Retailor data by executive:', data); 
+            this.retailorNames = data;
+            this.areas = Array.from(new Set(data.map((retailer: any) => retailer.area)));
+            console.log('Areas:', this.areas); 
+          },
+          error: (error) => {
+            console.error(error);
+          }
+        });
+      }
     }
-  }
+  
+    
 
   filterRetailers(): any[] {
     if (!this.selectedArea || !this.retailorNames) {
