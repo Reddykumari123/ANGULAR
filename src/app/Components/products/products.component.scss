@@ -1,4 +1,82 @@
 .products-container {
+    display: flex;
+    // to arrange its child elements in a row.
+    flex-wrap: wrap;
+    // ensures that items wrap to the next line when the container width is insufficient.
+    justify-content: center;
+  }
+  // Represents a single product card.
+  .product-card {
+    width: 150px; 
+    height: 220px; 
+    margin: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    overflow: hidden;
+    margin-top:-15px;
+    margin-right:10px;
+    margin-bottom:30px;
+    background-color: whitesmoke;
+  }
+  // Applies to the product image within each card.
+  .product-image {
+    width: 100px;
+    height:100px;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    padding-top: 15px;
+  }
+  // styling the product details (e.g., name, price) within the card.
+  .product-details { 
+    padding: 30px;
+    font-weight: bold;
+    font-family: "Roboto", sans-serif;
+  }
+  // class to make text red.
+  .red{
+    color:black;
+  }
+  // Represents a header image (e.g., logo) with a background image Positioned at the top-left corner 
+  .header-image {
+    background-image: url("/assets/logo1.jpg");
+    background-size: contain; 
+    background-repeat: no-repeat;
+    width: 100px; 
+    height: 100px; 
+    position: absolute;
+    top: 0;
+    left: 0;
+    margin-left:10px;
+  }
+  .header {
+    position: relative;
+  }
+   .login-button {
+    position: absolute;
+    top: 0;
+    right: 0;
+    background-color: #fbce07;
+    margin-right:40px;
+    margin-top:2px;
+    border: 2px solid black;
+    color: black;
+    padding: 8px 20px; 
+    border-radius:20px;
+    font-weight: bold;
+  }
+  .login-button:hover {
+    background-color: white;
+    color: black;
+  }
+  .filter{
+    margin-top:50px;
+    margin-left:30px;
+    width:300px;
+    transform: scale(0.85);
+  }
+   /* CSS for spinner */
+=======
   display: flex;
   flex-wrap: wrap;
   background-color: white; 
@@ -87,8 +165,6 @@
   transform: scale(0.85);
   
 }
-
-
 .spinner-overlay {
   position: fixed;
   top: 0;

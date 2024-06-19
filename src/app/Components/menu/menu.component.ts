@@ -76,6 +76,6 @@ export class MenuComponent implements OnInit {
   }
 
   logout() {
-    this.router.navigate(['/products']);
+    this.router.navigate(['/products'])
   }
 }

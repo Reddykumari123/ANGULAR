@@ -38,10 +38,9 @@ export const routes: Routes =
     {path:'notifications',component:NotificationsComponent},
     {path:'Reports',component:ReportsComponent},
     { path: 'CreateDSR/:id/Review', component: ReviewComponent },
-    {path:'Productview',component:ProductViewComponent},
 
     {path:'Edit',component:EditDsrComponent},
-    {path:'Edit',component:EditDsrComponent},
+
     { path:'Edit/:id/Orderform', component:OrderformEditComponent},
 
 
