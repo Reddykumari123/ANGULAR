@@ -150,3 +150,7 @@ export class ReviewComponent implements OnInit {
     this.dsrService.Postproducts(this.UpdatedProducts).subscribe(observer);
   }
 }
+<<<<<<< Updated upstream
+=======
+
+>>>>>>> Stashed changes
